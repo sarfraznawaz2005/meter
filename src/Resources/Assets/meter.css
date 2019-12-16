@@ -1,6 +1,8 @@
 body, .card-body {
+    font-family: Nunito !important;
     background: #edf1f3;
     color: #333;
+    font-size: .95rem;
 }
 
 svg.logo {
@@ -14,14 +16,21 @@ svg.logo {
 .table td {
     vertical-align: middle !important;
     background: #fff;
+    font-size: .90rem;
 }
 
 .nav-item {
     margin-left: 5px;
 }
 
+.nav-item a {
+    font-size: .95rem;
+}
+
 .table thead {
-    background: #ddd;
+    background: #DAE0E5;
+    color: #666;
+    font-size: .90rem;
 }
 
 .card {
@@ -43,4 +52,56 @@ svg.logo {
     background-color: #999;
     outline: none;
     margin-bottom: 5px;
+}
+
+table.dataTable {
+    border-collapse: collapse !important;
+}
+
+.table-bordered td, .table-bordered th {
+    border: none;
+    border-bottom: 1px solid #eee !important;
+}
+
+.table td, .table th {
+    padding: .60rem;
+}
+
+.badge {
+    font-size: .90rem;
+}
+
+.badge-primary {
+    background-color: #8ebef2;
+    color: #212529;
+}
+
+.badge-secondary {
+    background-color: #DAE0E5;
+    color: #212529;
+}
+
+.badge-info {
+    background-color: #c4e7ed;
+    color: #212529;
+}
+
+.badge-success {
+    background-color: #a2e5b1;
+    color: #212529;
+}
+
+.badge-warning {
+    background-color: #FFF382;
+    color: #212529;
+}
+
+.badge-danger {
+    background-color: #f4bcc1;
+    color: #212529;
+}
+
+.dataTables_wrapper .dataTables_processing {
+    background-color: #a2e5b1;
+    color: #212529;
 }

@@ -2,6 +2,7 @@
 
 namespace Sarfraznawaz2005\Meter\Tables;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Type;
@@ -53,13 +54,24 @@ class RequestsTable extends Table
         $transformed = [];
 
         foreach ($rows as $row) {
-            $data['created'] = $row['created_at'];
-            $data['verb'] = $row['content']['method'];
+            $data['created'] = withHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
+
+            $data['verb'] = badge($row['content']['method']);
             $data['path'] = $row['content']['uri'];
             $data['controller'] = $row['content']['controller_action'];
-            $data['status'] = $row['content']['response_status'];
-            $data['time'] = $row['content']['duration'];
-            $data['slow'] = $row['is_slow'];
+
+            $data['status'] = autoBadge($row['content']['response_status'], [
+                'success' => ($row['content']['response_status'] < 400),
+                'warning' => ($row['content']['response_status'] >= 400) && ($row['content']['response_status'] < 500),
+                'danger' => ($row['content']['response_status'] >= 500),
+            ]);
+
+            $data['time'] = $row['content']['duration'] . 'ms';
+
+            $data['slow'] = autoBadge($row['is_slow'], [
+                'secondary' => $row['is_slow'] === 0,
+                'danger' => $row['is_slow'] === 1
+            ]);
 
             $transformed[] = $data;
         }

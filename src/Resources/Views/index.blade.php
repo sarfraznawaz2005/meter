@@ -36,8 +36,7 @@
             "ajax": {
                 "url": "{{ route('meter_requests_table') }}",
                 "dataType": "json",
-                "type": "POST",
-                "data": {_token: "{{csrf_token()}}"}
+                "type": "GET",
             },
             "columns": [
                 {data: 'created'},

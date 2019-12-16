@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="btn btn-light {{active_link('meter_home') ? 'active' : ''}}" href="{{route('meter_home')}}">Dashboard</a>
+                <a class="btn btn-light {{activeLink('meter_home') ? 'active' : ''}}" href="{{route('meter_home')}}">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-light" href="#">Requests</a>
