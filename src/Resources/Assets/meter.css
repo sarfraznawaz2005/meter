@@ -1,0 +1,46 @@
+body, .card-body {
+    background: #edf1f3;
+    color: #333;
+}
+
+svg.logo {
+    margin-bottom: -3px;
+}
+
+.card-body {
+    padding: 0.50rem;
+}
+
+.table td {
+    vertical-align: middle !important;
+    background: #fff;
+}
+
+.nav-item {
+    margin-left: 5px;
+}
+
+.table thead {
+    background: #ddd;
+}
+
+.card {
+    border: none;
+}
+
+.navbar-toggler {
+    width: 47px;
+    height: 34px;
+    background-color: #d3d3d3;
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler .line {
+    width: 100%;
+    float: left;
+    height: 2px;
+    background-color: #999;
+    outline: none;
+    margin-bottom: 5px;
+}

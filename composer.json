@@ -1,0 +1,56 @@
+{
+    "name": "sarfraznawaz2005/meter",
+    "description": "laravel package to find performance bottlenecks in your laravel application.",
+    "keywords": [
+        "laravel",
+        "performance",
+        "meter",
+        "log",
+        "request",
+        "queries",
+        "database",
+        "monitor",
+        "health"
+    ],
+    "homepage": "https://github.com/sarfraznawaz2005/meter",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Sarfraz Ahmed",
+            "email": "sarfraznawaz2005@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "~5|~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sarfraznawaz2005\\Meter\\": "src"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sarfraznawaz2005\\Meter\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sarfraznawaz2005\\Meter\\MeterServiceProvider"
+            ]
+        }
+    }
+}
