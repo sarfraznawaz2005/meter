@@ -68,36 +68,32 @@ table.dataTable {
 
 .badge {
     font-size: .90rem;
+    min-width: 40px;
+    color: #212529;
 }
 
 .badge-primary {
     background-color: #8ebef2;
-    color: #212529;
 }
 
 .badge-secondary {
     background-color: #DAE0E5;
-    color: #212529;
 }
 
 .badge-info {
     background-color: #c4e7ed;
-    color: #212529;
 }
 
 .badge-success {
     background-color: #a2e5b1;
-    color: #212529;
 }
 
 .badge-warning {
     background-color: #FFF382;
-    color: #212529;
 }
 
 .badge-danger {
     background-color: #f4bcc1;
-    color: #212529;
 }
 
 .dataTables_wrapper .dataTables_processing {
