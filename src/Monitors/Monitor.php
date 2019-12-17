@@ -51,7 +51,7 @@ abstract class Monitor
      * @param array $content
      * @return mixed
      */
-    public function save($type, $isSlow, array $content)
+    public function record($type, $isSlow, array $content)
     {
         Meter::stopMonitoring();
 

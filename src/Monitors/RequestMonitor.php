@@ -51,6 +51,6 @@ class RequestMonitor extends Monitor
             'ip' => $event->request->ip(),
         ];
 
-        $this->save(Type::REQUEST, $isSlow, $content);
+        $this->record(Type::REQUEST, $isSlow, $content);
     }
 }

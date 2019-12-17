@@ -48,7 +48,7 @@ class QueryMonitor extends Monitor
             'line' => $caller['line'],
         ];
 
-        $this->save(Type::QUERY, $isSlow, $content);
+        $this->record(Type::QUERY, $isSlow, $content);
     }
 
     /**
