@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/meter/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/meter/datatable/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/meter/meter.css') }}">
+
+    @stack('css')
 </head>
 <body>
 
@@ -29,7 +31,7 @@
 <script src="{{ asset('vendor/meter/datatable/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/meter.js') }}"></script>
 
-@stack('scripts')
+@stack('js')
 
 </body>
 </html>

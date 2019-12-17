@@ -15,7 +15,6 @@ svg.logo {
 
 .table td {
     vertical-align: middle !important;
-    background: #fff;
     font-size: .90rem;
 }
 
@@ -64,7 +63,7 @@ table.dataTable {
 }
 
 .table td, .table th {
-    padding: .60rem;
+    padding: .50rem;
 }
 
 .badge {
@@ -104,4 +103,12 @@ table.dataTable {
 .dataTables_wrapper .dataTables_processing {
     background-color: #a2e5b1;
     color: #212529;
+}
+
+.table-hover tbody tr {
+    background-color: #fff !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #edf1f3 !important;
 }

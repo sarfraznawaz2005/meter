@@ -1,11 +1,9 @@
 @extends('meter::layout.layout')
 
-@section('title', $title)
-
 @section('content')
 
     <div class="table-responsive-sm">
-        <table class="table table-hover table-bordered table-condensed mx-auto small w-100 text-dark">
+        <table class="table table-hover mx-auto w-100">
             <thead>
             <tr>
                 <th>Created</th>
@@ -22,7 +20,7 @@
 
 @endsection
 
-@push('scripts')
+@push('js')
     <script>
 
         meterTable('.table', '{{ route('meter_requests_table') }}', 10, [
