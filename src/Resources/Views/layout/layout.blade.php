@@ -8,6 +8,8 @@
     <title>Meter</title>
 
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('vendor/meter/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/meter/datatable/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/meter/meter.css') }}">
@@ -23,6 +25,8 @@
         @yield('content')
     </div>
 </div>
+
+@include('meter::layout.modal')
 
 <script src="{{ asset('vendor/meter/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/bootstrap/popper.min.js') }}"></script>

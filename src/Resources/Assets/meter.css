@@ -5,8 +5,8 @@ body, .card-body {
     font-size: .95rem;
 }
 
-svg.logo {
-    margin-bottom: -3px;
+.logo {
+    font-size: 25px;
 }
 
 .card-body {
@@ -111,4 +111,14 @@ table.dataTable {
 
 .table-hover tbody tr:hover {
     background-color: #edf1f3 !important;
+}
+
+.icon {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.icon:hover {
+    color: #000;
+    font-size: 1.2rem;
 }

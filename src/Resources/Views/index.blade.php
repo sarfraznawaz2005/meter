@@ -6,13 +6,14 @@
         <table class="table table-hover mx-auto w-100">
             <thead>
             <tr>
-                <th>Created</th>
+                <th>Happened</th>
                 <th>Verb</th>
                 <th>Path</th>
                 <th>Controller</th>
                 <th>Status</th>
                 <th>Time</th>
                 <th>Slow</th>
+                <th>Details</th>
             </tr>
             </thead>
         </table>
@@ -24,13 +25,14 @@
     <script>
 
         meterTable('.table', '{{ route('meter_requests_table') }}', 10, [
-            {data: 'created'},
-            {data: 'verb'},
-            {data: 'path'},
-            {data: 'controller'},
-            {data: 'status'},
-            {data: 'time'},
-            {data: 'slow'}
+            {data: 'Happened'},
+            {data: 'Verb'},
+            {data: 'Path'},
+            {data: 'Controller'},
+            {data: 'Status'},
+            {data: 'Time'},
+            {data: 'Slow'},
+            {data: 'Details'}
         ], {
             "columnDefs": [
                 {"width": "1%", "targets": -1}

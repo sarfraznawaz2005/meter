@@ -1,7 +1,28 @@
 $(document).ready(function () {
+
     meterSetup();
 
     $('.dataTable').on('draw.dt', meterSetup);
+
+    // details modal
+    $(document).on('click', '.btnDetails', function () {
+        var details = '<table cellpadding="5" style="font-size: .85rem;"><tr>';
+        var detailsObject = $(this).data('details');
+        var $modal = $('#detailsModal');
+
+        for (var key in detailsObject) {
+            if (detailsObject.hasOwnProperty(key) && key !== 'Details') {
+                details += '<tr><td width="100"><strong>' + key + '</strong></td><td>' + detailsObject[key] + '</td></tr>';
+            }
+        }
+
+        details += '</tr></table>';
+
+        $modal.find('.modal-body').html(details);
+        $modal.modal('show');
+
+        return false;
+    });
 });
 
 function meterSetup() {
@@ -41,3 +62,4 @@ function meterTable(tableSelector, url, length, columns, extraOptions) {
 
     return $(tableSelector).DataTable(options);
 }
+

@@ -20,7 +20,7 @@ class CreateMeterEntriesTable extends Migration
             $table->longText('content');
             $table->dateTime('created_at')->nullable();
 
-            $table->index(['type', 'is_slow']);
+            $table->index(['type']);
         });
     }
 

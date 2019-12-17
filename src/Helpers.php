@@ -1,13 +1,6 @@
 <?php
 
 if (!function_exists('activeLink')) {
-    /**
-     * Applies class/whatever class to links in navigation to mark them class.
-     *
-     * @param $path
-     * @param string $class
-     * @return string
-     */
     function activeLink($path, $class = 'active')
     {
         if (request()->is((array)$path) || request()->routeIs((array)$path)) {
@@ -48,3 +41,15 @@ if (!function_exists('center')) {
     }
 }
 
+if (!function_exists('detailsButton')) {
+    function detailsButton($details)
+    {
+        $details = htmlspecialchars(json_encode($details), ENT_QUOTES, 'UTF-8');
+
+        return <<< HTML
+        <a class="btnDetails" data-details="$details" data-toggle="tooltip" title="Details" href="#">
+            <i class="icon fa fa-bullseye"></i>
+        </a>
+HTML;
+    }
+}

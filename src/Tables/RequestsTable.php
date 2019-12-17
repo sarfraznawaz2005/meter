@@ -54,24 +54,31 @@ class RequestsTable extends Table
         $transformed = [];
 
         foreach ($rows as $row) {
-            $data['created'] = withHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
+            $data['Happened'] = withHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
-            $data['verb'] = badge($row['content']['method']);
-            $data['path'] = $row['content']['uri'];
-            $data['controller'] = $row['content']['controller_action'];
+            $data['Verb'] = badge($row['content']['method']);
+            $data['Path'] = $row['content']['uri'];
+            $data['Controller'] = $row['content']['controller_action'];
 
-            $data['status'] = autoBadge($row['content']['response_status'], [
+            $data['Status'] = autoBadge($row['content']['response_status'], [
                 'success' => ($row['content']['response_status'] < 400),
                 'warning' => ($row['content']['response_status'] >= 400) && ($row['content']['response_status'] < 500),
                 'danger' => ($row['content']['response_status'] >= 500),
             ]);
 
-            $data['time'] = $row['content']['duration'] . 'ms';
+            $data['Time'] = $row['content']['duration'] . 'ms';
 
-            $data['slow'] = autoBadge($row['is_slow'], [
+            $data['Slow'] = autoBadge($row['is_slow'], [
                 'secondary' => $row['is_slow'] === 'No',
                 'danger' => $row['is_slow'] === 'Yes'
             ]);
+
+            // additional for details button
+            $details['Memory'] = $row['content']['memory'] . 'MB';
+            $details['Middleware'] = $row['content']['middleware'];
+            $details['IP'] = $row['content']['ip'];
+
+            $data['Details'] = center(detailsButton(array_merge($data, $details)));
 
             $transformed[] = $data;
         }
