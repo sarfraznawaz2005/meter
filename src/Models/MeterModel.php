@@ -28,4 +28,15 @@ class MeterModel extends Model
     {
         return $query->where('type', $type)->orderBy('id', 'DESC');
     }
+
+    /**
+     * Accessor for is_slow
+     *
+     * @param $value
+     * @return string
+     */
+    public function getIsSlowAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

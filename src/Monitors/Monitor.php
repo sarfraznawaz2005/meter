@@ -57,7 +57,7 @@ abstract class Monitor
 
         $result = $this->model->create([
             'type' => $type,
-            'is_slow' => $isSlow,
+            'is_slow' => $isSlow ? 'yes' : 'no',
             'content' => $content,
         ]);
 

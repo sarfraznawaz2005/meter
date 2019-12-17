@@ -69,8 +69,8 @@ class RequestsTable extends Table
             $data['time'] = $row['content']['duration'] . 'ms';
 
             $data['slow'] = autoBadge($row['is_slow'], [
-                'secondary' => $row['is_slow'] === 0,
-                'danger' => $row['is_slow'] === 1
+                'secondary' => $row['is_slow'] === 'No',
+                'danger' => $row['is_slow'] === 'Yes'
             ]);
 
             $transformed[] = $data;
