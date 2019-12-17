@@ -47,7 +47,7 @@ if (!function_exists('detailsButton')) {
         $details = htmlspecialchars(json_encode($details), ENT_QUOTES, 'UTF-8');
 
         return <<< HTML
-        <a class="btnDetails" data-details="$details" data-toggle="tooltip" title="Details" href="#">
+        <a class="btnDetails" data-details="$details" href="#">
             <i class="icon fa fa-bullseye"></i>
         </a>
 HTML;

@@ -9,7 +9,6 @@
                 <th>Happened</th>
                 <th>Verb</th>
                 <th>Path</th>
-                <th>Controller</th>
                 <th>Status</th>
                 <th>Time</th>
                 <th>Slow</th>
@@ -28,7 +27,6 @@
             {data: 'Happened'},
             {data: 'Verb'},
             {data: 'Path'},
-            {data: 'Controller'},
             {data: 'Status'},
             {data: 'Time'},
             {data: 'Slow'},

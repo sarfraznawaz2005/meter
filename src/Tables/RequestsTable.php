@@ -56,9 +56,8 @@ class RequestsTable extends Table
         foreach ($rows as $row) {
             $data['Happened'] = withHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
-            $data['Verb'] = badge($row['content']['method']);
-            $data['Path'] = $row['content']['uri'];
-            $data['Controller'] = $row['content']['controller_action'];
+            $data['Verb'] = withHtmlTitle(badge($row['content']['method']), $row['content']['uri']);
+            $data['Path'] = withHtmlTitle($row['content']['uri'], $row['content']['controller_action']);
 
             $data['Status'] = autoBadge($row['content']['response_status'], [
                 'success' => ($row['content']['response_status'] < 400),
@@ -74,6 +73,7 @@ class RequestsTable extends Table
             ]);
 
             // additional for details button
+            $details['Controller'] = $row['content']['controller_action'];
             $details['Memory'] = $row['content']['memory'] . 'MB';
             $details['Middleware'] = $row['content']['middleware'];
             $details['IP'] = $row['content']['ip'];
