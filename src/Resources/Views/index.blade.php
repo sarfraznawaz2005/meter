@@ -25,28 +25,15 @@
 @push('scripts')
     <script>
 
-        $('.table').DataTable({
-            "serverSide": true,
-            "processing": true,
-            "responsive": true,
-            "autoWidth": true,
-            "ordering": false,
-            "lengthChange": true,
-            "pageLength": 10,
-            "ajax": {
-                "url": "{{ route('meter_requests_table') }}",
-                "dataType": "json",
-                "type": "GET",
-            },
-            "columns": [
-                {data: 'created'},
-                {data: 'verb'},
-                {data: 'path'},
-                {data: 'controller'},
-                {data: 'status'},
-                {data: 'time'},
-                {data: 'slow'}
-            ],
+        meterTable('.table', '{{ route('meter_requests_table') }}', 10, [
+            {data: 'created'},
+            {data: 'verb'},
+            {data: 'path'},
+            {data: 'controller'},
+            {data: 'status'},
+            {data: 'time'},
+            {data: 'slow'}
+        ], {
             "columnDefs": [
                 {"width": "1%", "targets": -1}
             ]
