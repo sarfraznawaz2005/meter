@@ -56,7 +56,7 @@ class RequestsTable extends Table
         foreach ($rows as $row) {
             $data['Happened'] = withHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
-            $data['Verb'] = withHtmlTitle(badge($row['content']['method']), $row['content']['uri']);
+            $data['Verb'] = badge($row['content']['method']);
             $data['Path'] = withHtmlTitle($row['content']['uri'], $row['content']['controller_action']);
 
             $data['Status'] = autoBadge($row['content']['response_status'], [
