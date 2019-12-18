@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     // details modal
     $(document).on('click', '.btnDetails', function () {
-        var details = '<table cellpadding="5" style="font-size: .85rem;"><tr>';
+        var details = '<table cellpadding="5" style="font-size: .85rem;">';
         var detailsObject = $(this).data('details');
         var $modal = $('#detailsModal');
 
@@ -16,7 +16,7 @@ $(document).ready(function () {
             }
         }
 
-        details += '</tr></table>';
+        details += '</table>';
 
         $modal.find('.modal-body').html(details);
         $modal.modal('show');
