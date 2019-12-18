@@ -65,7 +65,7 @@ class RequestsTable extends Table
                 'danger' => ($row['content']['response_status'] >= 500),
             ]);
 
-            $data['Time'] = $row['content']['duration'] . 'ms';
+            $data['Time'] = $row['content']['duration'] . ' ms';
 
             $data['Slow'] = autoBadge($row['is_slow'], [
                 'secondary' => $row['is_slow'] === 'No',
@@ -74,11 +74,11 @@ class RequestsTable extends Table
 
             // additional for details button
             $details['Controller'] = $row['content']['controller_action'];
-            $details['Memory'] = $row['content']['memory'] . 'MB';
+            $details['Memory'] = $row['content']['memory'] . ' MB';
             $details['Middleware'] = $row['content']['middleware'];
             $details['IP'] = $row['content']['ip'];
 
-            $data['Details'] = center(detailsButton(array_merge($data, $details)));
+            $data['More'] = center(detailsButton($details));
 
             $transformed[] = $data;
         }

@@ -12,7 +12,7 @@
                 <th>Status</th>
                 <th>Time</th>
                 <th>Slow</th>
-                <th>Details</th>
+                <th>More</th>
             </tr>
             </thead>
         </table>
@@ -30,7 +30,7 @@
             {data: 'Status'},
             {data: 'Time'},
             {data: 'Slow'},
-            {data: 'Details'}
+            {data: 'More'}
         ], {
             "columnDefs": [
                 {"width": "1%", "targets": -1}
