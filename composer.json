@@ -24,7 +24,8 @@
     ],
     "require": {
         "php": ">=7.0",
-        "illuminate/support": "~5|~6"
+        "illuminate/support": "~5|~6",
+        "consoletvs/charts": "6.*"
     },
     "autoload": {
         "psr-4": {

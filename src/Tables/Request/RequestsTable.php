@@ -1,10 +1,11 @@
 <?php
 
-namespace Sarfraznawaz2005\Meter\Tables;
+namespace Sarfraznawaz2005\Meter\Tables\Request;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
+use Sarfraznawaz2005\Meter\Tables\Table;
 use Sarfraznawaz2005\Meter\Type;
 
 class RequestsTable extends Table

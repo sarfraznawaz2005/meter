@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <div>{!! $chart->container() !!}</div>
+
     <div class="table-responsive-sm">
         <table class="table table-hover mx-auto w-100">
             <thead>
