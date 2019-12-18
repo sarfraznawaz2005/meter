@@ -66,6 +66,7 @@ class RequestsTable extends Table
             ]);
 
             $data['Time'] = $row['content']['duration'] . ' ms';
+            $data['Memory'] = $row['content']['memory'] . ' MB';
 
             $data['Slow'] = autoBadge($row['is_slow'], [
                 'secondary' => $row['is_slow'] === 'No',
@@ -74,7 +75,6 @@ class RequestsTable extends Table
 
             // additional for details button
             $details['Controller'] = $row['content']['controller_action'];
-            $details['Memory'] = $row['content']['memory'] . ' MB';
             $details['Middleware'] = $row['content']['middleware'];
             $details['IP'] = $row['content']['ip'];
 

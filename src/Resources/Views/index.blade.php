@@ -11,6 +11,7 @@
                 <th>Path</th>
                 <th>Status</th>
                 <th>Time</th>
+                <th>Memory</th>
                 <th>Slow</th>
                 <th>More</th>
             </tr>
@@ -29,6 +30,7 @@
             {data: 'Path'},
             {data: 'Status'},
             {data: 'Time'},
+            {data: 'Memory'},
             {data: 'Slow'},
             {data: 'More'}
         ], {
