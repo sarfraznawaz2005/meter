@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\Builder;
+
 if (!function_exists('activeLink')) {
     function activeLink($path, $class = 'active')
     {
@@ -51,5 +53,14 @@ if (!function_exists('detailsButton')) {
             <i class="icon fa fa-bullseye"></i>
         </a>
 HTML;
+    }
+}
+
+if (!function_exists('getSql')) {
+    function getSql(Builder $builder)
+    {
+        $addSlashes = str_replace('?', "'?'", $builder->toSql());
+
+        return vsprintf(str_replace('?', '%s', $addSlashes), $builder->getBindings());
     }
 }

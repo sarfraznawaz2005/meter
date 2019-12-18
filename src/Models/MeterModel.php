@@ -26,6 +26,6 @@ class MeterModel extends Model
      */
     public function scopeType($query, $type): Builder
     {
-        return $query->where('type', $type)->orderBy('id', 'DESC');
+        return $query->where('type', $type);
     }
 }

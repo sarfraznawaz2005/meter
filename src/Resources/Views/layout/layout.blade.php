@@ -33,6 +33,7 @@
 <script src="{{ asset('vendor/meter/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/datatable/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendor/meter/moment.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/Chart.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/meter.js') }}"></script>
 
