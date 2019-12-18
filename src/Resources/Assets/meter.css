@@ -99,6 +99,8 @@ table.dataTable {
 .dataTables_wrapper .dataTables_processing {
     background-color: #a2e5b1;
     color: #212529;
+    position: absolute !important;
+    top: 1% !important;
 }
 
 .table-hover tbody tr {
