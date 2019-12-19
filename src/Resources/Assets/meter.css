@@ -129,3 +129,13 @@ table.dataTable {
     width: auto;
     min-width: 300px;
 }
+
+.nav.nav-tabs {
+    padding-bottom: 2px;
+    border: none;
+}
+
+.tab-content, .main {
+    border-radius: 10px;
+    margin: 0 10px 50px 10px;
+}

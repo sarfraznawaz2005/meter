@@ -18,6 +18,10 @@ class RequestTimeChart extends Chart
         $this->options([
             'responsive' => true,
             'maintainAspectRatio' => false,
+            'title' => [
+                'display' => true,
+                'text' => ['Average: ' . round(collect($this->getValues())->average()) . 'ms'],
+            ],
             'legend' => false,
             'scales' => [
                 'yAxes' => [[
@@ -91,10 +95,10 @@ class RequestTimeChart extends Chart
         $this->dataset('Response Time', 'bar', $this->getValues())
             ->color('rgb(255, 99, 132)')
             ->options([
-                'pointRadius' => 0,
+                'pointRadius' => 1,
                 'fill' => true,
                 'lineTension' => 0,
-                'borderWidth' => 1,
+                'borderWidth' => 1
             ])
             ->backgroundcolor('rgba(255, 99, 132, 0.7)');
     }

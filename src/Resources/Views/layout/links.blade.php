@@ -17,7 +17,7 @@
                 <a class="btn btn-light {{activeLink('meter_home') ? 'active' : ''}}" href="{{route('meter_home')}}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-light" href="#">Requests</a>
+                <a class="btn btn-light {{activeLink('meter_requests') ? 'active' : ''}}" href="{{route('meter_requests')}}">Requests</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-light" href="#">Queries</a>

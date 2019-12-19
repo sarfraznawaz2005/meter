@@ -47,7 +47,7 @@ function meterTable(tableSelector, url, length, columns, extraOptions) {
         "responsive": true,
         "autoWidth": true,
         "ordering": false,
-        "lengthChange": true,
+        "lengthChange": false,
         "pageLength": length,
         "ajax": {
             "url": url,

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// pages
 Route::get('/', 'HomeController@index')->name('meter_home');
+Route::get('requests', 'TablesController@requests')->name('meter_requests');
 
-Route::get('requests_table', 'HomeController@requestTable')->name('meter_requests_table');
+// tables
+Route::get('requests_table', 'TablesController@requestTable')->name('meter_requests_table');
