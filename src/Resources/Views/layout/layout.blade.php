@@ -37,9 +37,9 @@
 <script src="{{ asset('vendor/meter/Chart.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/meter.js') }}"></script>
 
-@if($chart)
+@isset($chart)
     {!! $chart->script() !!}
-@endif
+@endisset
 
 @stack('js')
 
