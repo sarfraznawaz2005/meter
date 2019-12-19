@@ -2,45 +2,18 @@
 
 namespace Sarfraznawaz2005\Meter\Charts\Request;
 
-use Illuminate\Database\Eloquent\Builder;
 use Sarfraznawaz2005\Meter\Charts\Chart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Type;
 
 class RequestTimeChart extends Chart
 {
-    public function __construct(MeterModel $model)
-    {
-        parent::__construct();
-
-        // fixme
-        $this->buildChart($this->getDataSet($model->type(Type::REQUEST)->orderBy('id', 'asc')));
-    }
-
     /**
-     * Gets data set for chart.
+     * Sets options for chart.
      *
-     * @param Builder $builder
-     * @return array|mixed
+     * @return void
      */
-    public function getDataSet(Builder $builder)
-    {
-        $dataSet = [];
-
-        foreach ($builder->get() as $item) {
-            $dataSet[(string)$item->created_at] = $item->content['duration'];
-        }
-
-        return $dataSet;
-    }
-
-    /**
-     * Generates and returns chart
-     *
-     * @param array $dataSet
-     * @return mixed
-     */
-    public function buildChart(array $dataSet)
+    protected function setOptions()
     {
         $this->options([
             'responsive' => true,
@@ -73,10 +46,49 @@ class RequestTimeChart extends Chart
                 ]]
             ],
         ], true);
+    }
 
-        $this->labels(array_keys($dataSet));
+    /**
+     * Sets data for chart.
+     *
+     * @param MeterModel $model
+     * @return void
+     */
+    protected function setData(MeterModel $model)
+    {
+        foreach ($model->type(Type::REQUEST)->orderBy('id', 'asc')->get() as $item) {
+            $this->data[(string)$item->created_at] = $item->content['duration'];
+        }
+    }
 
-        $this->dataset('Response Time', 'bar', array_values($dataSet))
+    /**
+     * Gets labels for chart.
+     *
+     * @return mixed
+     */
+    protected function getLabels(): array
+    {
+        return array_keys($this->data);
+    }
+
+    /**
+     * Gets values for chart.
+     *
+     * @return mixed
+     */
+    protected function getValues(): array
+    {
+        return array_values($this->data);
+    }
+
+    /**
+     * Generates and returns chart
+     *
+     * @return void
+     */
+    protected function setDataSet()
+    {
+        $this->dataset('Response Time', 'bar', $this->getValues())
             ->color('rgb(255, 99, 132)')
             ->options([
                 'pointRadius' => 0,
@@ -86,4 +98,5 @@ class RequestTimeChart extends Chart
             ])
             ->backgroundcolor('rgba(255, 99, 132, 0.7)');
     }
+
 }

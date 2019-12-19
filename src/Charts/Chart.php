@@ -3,24 +3,63 @@
 namespace Sarfraznawaz2005\Meter\Charts;
 
 use ConsoleTVs\Charts\Classes\Chartjs\Chart as BaseChart;
-use Illuminate\Database\Eloquent\Builder;
+use Sarfraznawaz2005\Meter\Models\MeterModel;
 
 abstract class Chart extends BaseChart
 {
-    /**
-     * Gets data set for chart.
-     *
-     * @param Builder $builder
-     * @return mixed
-     */
-    abstract public function getDataSet(Builder $builder);
+    protected $data = [];
 
     /**
-     * Generates and returns chart
+     * Sets options for chart.
      *
-     * @param array $dataSet
+     * @return void
+     */
+    abstract protected function setOptions();
+
+    /**
+     * Sets data for chart.
+     *
+     * @param MeterModel $model
+     * @return void
+     */
+    abstract protected function setData(MeterModel $model);
+
+    /**
+     * Gets labels for chart.
+     *
      * @return mixed
      */
-    abstract public function buildChart(array $dataSet);
+    abstract protected function getLabels(): array;
+
+    /**
+     * Gets values for chart.
+     *
+     * @return mixed
+     */
+    abstract protected function getValues(): array;
+
+    /**
+     * Sets DataSet for chart.
+     *
+     * @return void
+     */
+    abstract protected function setDataSet();
+
+    /**
+     * Chart constructor.
+     * @param MeterModel $model
+     */
+    public function __construct(MeterModel $model)
+    {
+        parent::__construct();
+
+        $this->setData($model);
+
+        $this->setOptions();
+
+        $this->labels($this->getLabels());
+
+        $this->setDataSet();
+    }
 
 }
