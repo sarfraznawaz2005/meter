@@ -48,6 +48,9 @@ class RequestTimeChart extends Chart
             'legend' => false,
             'scales' => [
                 'yAxes' => [[
+                    'ticks' => [
+                        'beginAtZero' => true
+                    ],
                     'scaleLabel' => [
                         'display' => true,
                         'labelString' => 'Response Time (ms)'
