@@ -53,6 +53,11 @@ body, .card-body {
     margin-bottom: 5px;
 }
 
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
 table.dataTable {
     border-collapse: collapse !important;
 }

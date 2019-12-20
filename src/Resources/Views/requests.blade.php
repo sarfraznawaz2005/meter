@@ -53,7 +53,7 @@
             {data: 'More'}
         ], {
             "columnDefs": [
-                {"width": "10%", "targets": -1}
+                {"width": "5%", "targets": -1}
             ]
         });
 
