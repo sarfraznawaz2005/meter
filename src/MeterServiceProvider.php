@@ -5,6 +5,7 @@ namespace Sarfraznawaz2005\Meter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sarfraznawaz2005\Meter\Console\PruneCommand;
+use Sarfraznawaz2005\Meter\Console\PublishCommand;
 
 class MeterServiceProvider extends ServiceProvider
 {
@@ -32,17 +33,10 @@ class MeterServiceProvider extends ServiceProvider
         });
 
         if ($this->app->runningInConsole()) {
-
-            $this->publishes([
-                __DIR__ . '/Config/config.php' => config_path('meter.php'),
-                __DIR__ . '/Migrations' => database_path('migrations'),
-                __DIR__ . '/Resources/Views' => resource_path('views/vendor/meter'),
-                __DIR__ . '/Resources/Assets' => public_path('vendor/meter'),
-            ]);
-
-            $this->commands([
-                PruneCommand::class
-            ]);
+            $this->publishes([__DIR__ . '/Config/config.php' => config_path('meter.php')], 'meter-config');
+            $this->publishes([__DIR__ . '/Migrations' => database_path('migrations')], 'meter-migration');
+            $this->publishes([__DIR__ . '/Resources/Views' => resource_path('views/vendor/meter')], 'meter-views');
+            $this->publishes([__DIR__ . '/Resources/Assets' => public_path('vendor/meter')], 'meter-assets');
         }
     }
 
@@ -52,6 +46,11 @@ class MeterServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/Config/config.php', 'meter');
+
+        $this->commands([
+            PruneCommand::class,
+            PublishCommand::class,
+        ]);
 
         $this->app->singleton('meter', static function () {
             return new Meter;

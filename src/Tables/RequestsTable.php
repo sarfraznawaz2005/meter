@@ -1,6 +1,6 @@
 <?php
 
-namespace Sarfraznawaz2005\Meter\Tables\Request;
+namespace Sarfraznawaz2005\Meter\Tables;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -55,12 +55,12 @@ class RequestsTable extends Table
         $transformed = [];
 
         foreach ($rows as $row) {
-            $data['Happened'] = withHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
+            $data['Happened'] = meterWithHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
-            $data['Verb'] = badge($row['content']['method']);
-            $data['Path'] = withHtmlTitle($row['content']['uri'], $row['content']['controller_action']);
+            $data['Verb'] = meterBadge($row['content']['method']);
+            $data['Path'] = meterWithHtmlTitle($row['content']['uri'], $row['content']['controller_action']);
 
-            $data['Status'] = autoBadge($row['content']['response_status'], [
+            $data['Status'] = meterAutoBadge($row['content']['response_status'], [
                 'success' => ($row['content']['response_status'] < 400),
                 'warning' => ($row['content']['response_status'] >= 400) && ($row['content']['response_status'] < 500),
                 'danger' => ($row['content']['response_status'] >= 500),
@@ -69,7 +69,7 @@ class RequestsTable extends Table
             $data['Time'] = $row['content']['duration'] . ' ms';
             $data['Memory'] = $row['content']['memory'] . ' MB';
 
-            $data['Slow'] = autoBadge($row['is_slow'], [
+            $data['Slow'] = meterAutoBadge($row['is_slow'], [
                 'secondary' => $row['is_slow'] === 'No',
                 'danger' => $row['is_slow'] === 'Yes'
             ]);
@@ -79,7 +79,7 @@ class RequestsTable extends Table
             $details['Middleware'] = $row['content']['middleware'];
             $details['IP'] = $row['content']['ip'];
 
-            $data['More'] = center(detailsButton($details));
+            $data['More'] = meterCenter(meterDetailsButton($details));
 
             $transformed[] = $data;
         }

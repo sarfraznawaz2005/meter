@@ -3,7 +3,7 @@
 namespace Sarfraznawaz2005\Meter\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Sarfraznawaz2005\Meter\Charts\Request\RequestTimeChart;
+use Sarfraznawaz2005\Meter\Charts\RequestTimeChart;
 
 class HomeController extends Controller
 {

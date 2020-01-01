@@ -32,6 +32,10 @@ body, .card-body {
     font-size: .90rem;
 }
 
+.table th:last-child {
+	text-align:center;
+}
+
 .card {
     border: none;
 }

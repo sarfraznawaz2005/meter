@@ -1,8 +1,7 @@
 <?php
 
-namespace Sarfraznawaz2005\Meter\Charts\Request;
+namespace Sarfraznawaz2005\Meter\Charts;
 
-use Sarfraznawaz2005\Meter\Charts\Chart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Type;
 

@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="btn btn-light {{activeLink('meter_home') ? 'active' : ''}}" href="{{route('meter_home')}}">Dashboard</a>
+                <a class="btn btn-light {{meterActiveLink('meter_home') ? 'active' : ''}}" href="{{route('meter_home')}}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-light {{activeLink('meter_requests') ? 'active' : ''}}" href="{{route('meter_requests')}}">Requests</a>
+                <a class="btn btn-light {{meterActiveLink('meter_requests') ? 'active' : ''}}" href="{{route('meter_requests')}}">Requests</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-light" href="#">Queries</a>
