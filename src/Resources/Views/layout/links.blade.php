@@ -26,7 +26,13 @@
                 <a class="btn btn-light {{meterActiveLink('meter_commands') ? 'active' : ''}}" href="{{route('meter_commands')}}">Commands</a>
             </li>
             <li class="nav-item">
+                <a class="btn btn-light" href="#">Events</a>
+            </li>
+            <li class="nav-item">
                 <a class="btn btn-light" href="#">Jobs</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-light" href="#">Schedule</a>
             </li>
         </ul>
     </div>
