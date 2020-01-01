@@ -2,10 +2,11 @@
 
 namespace Sarfraznawaz2005\Meter\Charts;
 
+use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Type;
 
-class RequestTimeChart extends Chart
+class CommandsByDayChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -19,18 +20,18 @@ class RequestTimeChart extends Chart
             'maintainAspectRatio' => false,
             'title' => [
                 'display' => true,
-                'text' => ['Average: ' . round(collect($this->getValues())->average()) . 'ms'],
+                'text' => ['Average: ' . round(collect($this->getValues())->average())],
             ],
             'legend' => false,
             'scales' => [
                 'yAxes' => [[
                     'ticks' => [
-                        'beginAtZero' => true
+                        'beginAtZero' => true,
                     ],
                     'scaleLabel' => [
                         'display' => true,
-                        'labelString' => 'Response Time (ms)'
-                    ]
+                        'labelString' => 'Total Commands'
+                    ],
                 ]],
                 'xAxes' => [[
                     'display' => false,
@@ -59,9 +60,15 @@ class RequestTimeChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        foreach ($model->type(Type::REQUEST)->orderBy('id', 'asc')->get() as $item) {
-            $this->data[(string)$item->created_at] = $item->content['duration'];
-        }
+        $this->data = $model->type(Type::COMMAND)
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get([
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('COUNT(*) as "total"')
+            ])
+            ->pluck('total', 'date')
+            ->toArray();
     }
 
     /**
@@ -91,7 +98,7 @@ class RequestTimeChart extends Chart
      */
     protected function setDataSet()
     {
-        $this->dataset('Response Time', 'bar', $this->getValues())
+        $this->dataset('Total Commands', 'bar', $this->getValues())
             ->color('rgb(255, 99, 132)')
             ->options([
                 'pointRadius' => 1,

@@ -70,5 +70,10 @@ return [
             'ignore_packages' => true,
             'slow' => 300, // considered slow if equal or over given time in ms
         ],
+
+        Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class => [
+            'enabled' => env('METER_COMMAND_MONITOR', true),
+            'ignore' => [],
+        ],
     ]
 ];

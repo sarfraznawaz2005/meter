@@ -20,10 +20,10 @@
                 <a class="btn btn-light {{meterActiveLink('meter_requests') ? 'active' : ''}}" href="{{route('meter_requests')}}">Requests</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-light" href="#">Queries</a>
+                <a class="btn btn-light {{meterActiveLink('meter_queries') ? 'active' : ''}}" href="{{route('meter_queries')}}">Queries</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-light" href="#">Commands</a>
+                <a class="btn btn-light {{meterActiveLink('meter_commands') ? 'active' : ''}}" href="{{route('meter_commands')}}">Commands</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-light" href="#">Jobs</a>

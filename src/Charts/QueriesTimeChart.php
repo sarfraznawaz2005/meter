@@ -5,7 +5,7 @@ namespace Sarfraznawaz2005\Meter\Charts;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Type;
 
-class RequestTimeChart extends Chart
+class QueriesTimeChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -29,7 +29,7 @@ class RequestTimeChart extends Chart
                     ],
                     'scaleLabel' => [
                         'display' => true,
-                        'labelString' => 'Response Time (ms)'
+                        'labelString' => 'Time (ms)'
                     ]
                 ]],
                 'xAxes' => [[
@@ -59,8 +59,8 @@ class RequestTimeChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        foreach ($model->type(Type::REQUEST)->orderBy('id', 'asc')->get() as $item) {
-            $this->data[(string)$item->created_at] = $item->content['duration'];
+        foreach ($model->type(Type::QUERY)->orderBy('id', 'asc')->get() as $item) {
+            $this->data[(string)$item->created_at] = $item->content['time'];
         }
     }
 
@@ -91,7 +91,7 @@ class RequestTimeChart extends Chart
      */
     protected function setDataSet()
     {
-        $this->dataset('Response Time', 'bar', $this->getValues())
+        $this->dataset('Time', 'bar', $this->getValues())
             ->color('rgb(255, 99, 132)')
             ->options([
                 'pointRadius' => 1,

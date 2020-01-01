@@ -148,3 +148,13 @@ table.dataTable {
     border-radius: 10px;
     margin: 0 10px 50px 10px;
 }
+
+.meter_sql {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    color: #c7254e;
+}
+
+.meter_sql .sql_keyword {
+    color: #2953e1;
+    text-transform: uppercase;
+}

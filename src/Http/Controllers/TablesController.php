@@ -3,17 +3,23 @@
 namespace Sarfraznawaz2005\Meter\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Sarfraznawaz2005\Meter\Charts\RequestTimeChart;
+use Sarfraznawaz2005\Meter\Tables\CommandsTable;
+use Sarfraznawaz2005\Meter\Tables\QueriesTable;
 use Sarfraznawaz2005\Meter\Tables\RequestsTable;
 
 class TablesController extends Controller
 {
-    public function requests(RequestTimeChart $chart)
+    public function requestsTable(RequestsTable $table): array
     {
-        return view('meter::requests', compact('chart'));
+        return $table->getData();
     }
 
-    public function requestTable(RequestsTable $table): array
+    public function queriesTable(QueriesTable $table): array
+    {
+        return $table->getData();
+    }
+
+    public function commandsTable(CommandsTable $table): array
     {
         return $table->getData();
     }

@@ -7,7 +7,7 @@
             <a class="nav-item nav-link active" data-toggle="tab" href="#graph">Graph</a>
         </li>
         <li class="nav-item">
-            <a class="nav-item nav-link" data-toggle="tab" href="#index">Requests</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#index">Queries</a>
         </li>
     </ul>
 
@@ -23,11 +23,8 @@
                     <thead>
                     <tr>
                         <th>Happened</th>
-                        <th>Verb</th>
-                        <th>Path</th>
-                        <th>Status</th>
+                        <th>Query</th>
                         <th>Time</th>
-                        <th>Memory</th>
                         <th>Slow</th>
                         <th>More</th>
                     </tr>
@@ -42,18 +39,18 @@
 @push('js')
     <script>
 
-        meterTable('.table', '{{ route('meter_requests_table') }}', 25, [
+        meterTable('.table', '{{ route('meter_queries_table') }}', 25, [
             {data: 'Happened'},
-            {data: 'Verb'},
-            {data: 'Path'},
-            {data: 'Status'},
+            {data: 'Query'},
             {data: 'Time'},
-            {data: 'Memory'},
             {data: 'Slow'},
             {data: 'More'}
         ], {
             "columnDefs": [
-                {"width": "5%", "targets": -1}
+                {"width": "10%", "targets": 0},
+                {"width": "5%", "targets": -1},
+                {"width": "10%", "targets": -2},
+                {"width": "10%", "targets": -3}
             ]
         });
 

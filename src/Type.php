@@ -6,4 +6,5 @@ final class Type
 {
     const QUERY = 'query';
     const REQUEST = 'request';
+    const COMMAND = 'command';
 }

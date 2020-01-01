@@ -4,10 +4,11 @@ namespace Sarfraznawaz2005\Meter\Tables;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Type;
 
-class RequestsTable extends Table
+class QueriesTable extends Table
 {
     /**
      * Columns to be shown in table.
@@ -40,7 +41,7 @@ class RequestsTable extends Table
      */
     public function builder(): Builder
     {
-        return (new MeterModel)->type(Type::REQUEST)->orderBy('id', 'desc');
+        return (new MeterModel)->type(Type::QUERY)->orderBy('id', 'desc');
     }
 
     /**
@@ -56,17 +57,8 @@ class RequestsTable extends Table
         foreach ($rows as $row) {
             $data['Happened'] = meterWithHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
-            $data['Verb'] = meterBadge($row['content']['method']);
-            $data['Path'] = meterWithHtmlTitle($row['content']['uri'], $row['content']['controller_action']);
-
-            $data['Status'] = meterAutoBadge($row['content']['response_status'], [
-                'success' => $row['content']['response_status'] < 400,
-                'warning' => $row['content']['response_status'] >= 400 && $row['content']['response_status'] < 500,
-                'danger' => $row['content']['response_status'] >= 500,
-            ]);
-
-            $data['Time'] = $row['content']['duration'] . ' ms';
-            $data['Memory'] = $row['content']['memory'] . ' MB';
+            $data['Query'] = '<div class="meter_sql">' . Str::limit($row['content']['sql'], 80) . '</div>';
+            $data['Time'] = $row['content']['time'] . ' ms';
 
             $data['Slow'] = meterAutoBadge($row['is_slow'], [
                 'secondary' => $row['is_slow'] === 'No',
@@ -74,9 +66,10 @@ class RequestsTable extends Table
             ]);
 
             // additional for details button
-            $details['Controller'] = $row['content']['controller_action'];
-            $details['Middleware'] = $row['content']['middleware'];
-            $details['IP'] = $row['content']['ip'];
+            $details['Query'] = '<div class="meter_sql">' . $row['content']['sql'] . '</div>';
+            $details['Connection'] = $row['content']['connection'];
+            $details['File'] = $row['content']['file'];
+            $details['Line'] = $row['content']['line'];
 
             $data['More'] = meterCenter(meterDetailsButton($details));
 

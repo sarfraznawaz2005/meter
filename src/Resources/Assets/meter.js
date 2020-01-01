@@ -23,6 +23,10 @@ $(document).ready(function () {
 
         return false;
     });
+
+    $('#detailsModal').on('shown.bs.modal', function () {
+        meterHighlightSQL();
+    });
 });
 
 function meterSetup() {
@@ -33,6 +37,8 @@ function meterSetup() {
     });
 
     $('[data-toggle="tooltip"]').tooltip();
+
+    meterHighlightSQL();
 }
 
 // creates DataTables
@@ -45,7 +51,7 @@ function meterTable(tableSelector, url, length, columns, extraOptions) {
         "serverSide": true,
         "processing": true,
         "responsive": true,
-        "autoWidth": true,
+        "autoWidth": false,
         "ordering": false,
         "lengthChange": false,
         "pageLength": length,
@@ -63,3 +69,11 @@ function meterTable(tableSelector, url, length, columns, extraOptions) {
     return $(tableSelector).DataTable(options);
 }
 
+// highlights SQL keywords
+function meterHighlightSQL() {
+    var sqlReg = /\b(AND|AS|ASC|BETWEEN|BY|CASE|CURRENT_DATE|CURRENT_TIME|DELETE|DESC|DISTINCT|EACH|ELSE|ELSEIF|FALSE|FOR|FROM|GROUP|HAVING|IF|IN|INSERT|INTERVAL|INTO|IS|JOIN|KEY|KEYS|LEFT|LIKE|LIMIT|MATCH|NOT|NULL|ON|OPTION|OR|ORDER|OUT|OUTER|REPLACE|RIGHT|SELECT|SET|TABLE|THEN|TO|TRUE|UPDATE|VALUES|WHEN|WHERE|CREATE|ALTER|ALL|DATABASE|GRANT|PRIVILEGES|IDENTIFIED|FLUSH|INNER|COUNT)(?=[^\w])/ig;
+
+    document.querySelectorAll("td .meter_sql").forEach(function(item) {
+        item.innerHTML = item.innerHTML.replace(sqlReg,'<span class="sql_keyword">$1</span>');
+    });
+}
