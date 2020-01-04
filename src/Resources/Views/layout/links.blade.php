@@ -62,16 +62,6 @@
                 </li>
             @endif
 
-            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
-                <li class="nav-item">
-                    <a
-                        class="btn btn-light"
-                        href="#">
-                        Jobs
-                    </a>
-                </li>
-            @endif
-
             @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.enabled', true))
                 <li class="nav-item">
                     <a
