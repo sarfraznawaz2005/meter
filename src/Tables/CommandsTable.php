@@ -63,7 +63,6 @@ class CommandsTable extends Table
             ]));
 
             // additional for details button
-            // additional for details button
             $details['Arguments'] = '<pre class="json">' . json_encode($row['content']['arguments'], JSON_PRETTY_PRINT) . '</pre>';
             $details['Options'] = '<pre class="json">' . json_encode($row['content']['options'], JSON_PRETTY_PRINT) . '</pre>';
 
