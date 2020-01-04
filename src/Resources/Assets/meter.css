@@ -175,10 +175,10 @@ pre.json .json_keyword_braces {
     color: #2953e1;
 }
 
-a, a:active, a:visited {
+.card-body a, .card-body a:active, .card-body a:visited {
     color: #2953e1;
 }
 
-a:hover {
+.card-body a:hover {
     color: #ff1493;
 }
