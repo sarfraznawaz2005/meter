@@ -75,5 +75,10 @@ return [
             'enabled' => env('METER_COMMAND_MONITOR', true),
             'ignore' => [],
         ],
+
+        Sarfraznawaz2005\Meter\Monitors\EventMonitor::class => [
+            'enabled' => env('METER_EVENT_MONITOR', true),
+            'ignore' => [],
+        ],
     ]
 ];

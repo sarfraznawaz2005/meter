@@ -13,27 +13,66 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
+
             <li class="nav-item">
-                <a class="btn btn-light {{meterActiveLink('meter_home') ? 'active' : ''}}" href="{{route('meter_home')}}">Dashboard</a>
+                <a class="btn btn-light {{meterActiveLink('meter_home') ? 'active' : ''}}"
+                   href="{{route('meter_home')}}">
+                    Dashboard
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="btn btn-light {{meterActiveLink('meter_requests') ? 'active' : ''}}" href="{{route('meter_requests')}}">Requests</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-light {{meterActiveLink('meter_queries') ? 'active' : ''}}" href="{{route('meter_queries')}}">Queries</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-light {{meterActiveLink('meter_commands') ? 'active' : ''}}" href="{{route('meter_commands')}}">Commands</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-light" href="#">Events</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-light" href="#">Jobs</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-light" href="#">Schedule</a>
-            </li>
+
+            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.enabled', true))
+                <li class="nav-item">
+                    <a class="btn btn-light {{meterActiveLink('meter_requests') ? 'active' : ''}}"
+                       href="{{route('meter_requests')}}">
+                        Requests
+                    </a>
+                </li>
+            @endif
+
+            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.enabled', true))
+                <li class="nav-item">
+                    <a class="btn btn-light {{meterActiveLink('meter_queries') ? 'active' : ''}}"
+                       href="{{route('meter_queries')}}">
+                        Queries
+                    </a>
+                </li>
+            @endif
+
+            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.enabled', true))
+                <li class="nav-item">
+                    <a class="btn btn-light {{meterActiveLink('meter_commands') ? 'active' : ''}}"
+                       href="{{route('meter_commands')}}">
+                        Commands
+                    </a>
+                </li>
+            @endif
+
+            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
+                <li class="nav-item">
+                    <a class="btn btn-light {{meterActiveLink('meter_events') ? 'active' : ''}}"
+                       href="{{route('meter_events')}}">
+                        Events
+                    </a>
+                </li>
+            @endif
+
+            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
+                <li class="nav-item">
+                    <a class="btn btn-light" href="#">
+                        Jobs
+                    </a>
+                </li>
+            @endif
+
+            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
+                <li class="nav-item">
+                    <a class="btn btn-light" href="#">
+                        Schedule
+                    </a>
+                </li>
+            @endif
+
         </ul>
     </div>
 </nav>

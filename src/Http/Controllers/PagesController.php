@@ -4,6 +4,7 @@ namespace Sarfraznawaz2005\Meter\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Sarfraznawaz2005\Meter\Charts\CommandsByDayChart;
+use Sarfraznawaz2005\Meter\Charts\EventsByDayChart;
 use Sarfraznawaz2005\Meter\Charts\QueriesTimeChart;
 use Sarfraznawaz2005\Meter\Charts\RequestTimeChart;
 
@@ -27,5 +28,10 @@ class PagesController extends Controller
     public function commands(CommandsByDayChart $chart)
     {
         return view('meter::commands', compact('chart'));
+    }
+
+    public function events(EventsByDayChart $chart)
+    {
+        return view('meter::events', compact('chart'));
     }
 }

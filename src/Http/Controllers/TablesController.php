@@ -4,6 +4,7 @@ namespace Sarfraznawaz2005\Meter\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Sarfraznawaz2005\Meter\Tables\CommandsTable;
+use Sarfraznawaz2005\Meter\Tables\EventsTable;
 use Sarfraznawaz2005\Meter\Tables\QueriesTable;
 use Sarfraznawaz2005\Meter\Tables\RequestsTable;
 
@@ -20,6 +21,11 @@ class TablesController extends Controller
     }
 
     public function commandsTable(CommandsTable $table): array
+    {
+        return $table->getData();
+    }
+
+    public function eventsTable(EventsTable $table): array
     {
         return $table->getData();
     }

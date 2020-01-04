@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 if (!function_exists('meterActiveLink')) {
     function meterActiveLink($path, $class = 'active')
@@ -62,5 +63,12 @@ if (!function_exists('meterGetSql')) {
         $addSlashes = str_replace('?', "'?'", $builder->toSql());
 
         return vsprintf(str_replace('?', '%s', $addSlashes), $builder->getBindings());
+    }
+}
+
+if (!function_exists('meterFormatModel')) {
+    function meterFormatModel(Model $model)
+    {
+        return get_class($model) . ':' . implode('_', Arr::wrap($model->getKey()));
     }
 }

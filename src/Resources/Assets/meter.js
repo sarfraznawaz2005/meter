@@ -58,7 +58,7 @@ function meterTable(tableSelector, url, length, columns, extraOptions) {
         "ajax": {
             "url": url,
             "dataType": "json",
-            "type": "GET",
+            "type": "GET"
         },
         "columns": columns
     };
