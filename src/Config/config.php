@@ -80,5 +80,9 @@ return [
             'enabled' => env('METER_EVENT_MONITOR', true),
             'ignore' => [],
         ],
+
+        Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class => [
+            'enabled' => env('METER_SCHEDULE_MONITOR', true)
+        ],
     ]
 ];

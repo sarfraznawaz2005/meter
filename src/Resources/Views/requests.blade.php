@@ -14,6 +14,7 @@
     <div class="tab-content bg-white p-4">
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
+            <div class="text-center text-primary"><strong>Response Times</strong></div>
             <div>{!! $chart->container() !!}</div>
         </div>
 

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Type;
 
-class EventsByDayChart extends Chart
+class SchedulesByDayChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -30,7 +30,7 @@ class EventsByDayChart extends Chart
                     ],
                     'scaleLabel' => [
                         'display' => true,
-                        'labelString' => 'Total Events'
+                        'labelString' => 'Total Commands'
                     ],
                 ]],
                 'xAxes' => [[
@@ -60,7 +60,7 @@ class EventsByDayChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        $this->data = $model->type(Type::EVENT)
+        $this->data = $model->type(Type::SCHEDULE)
             ->groupBy('date')
             ->orderBy('date', 'ASC')
             ->get([
@@ -98,7 +98,7 @@ class EventsByDayChart extends Chart
      */
     protected function setDataSet()
     {
-        $this->dataset('Total Events', 'bar', $this->getValues())
+        $this->dataset('Total Commands', 'bar', $this->getValues())
             ->color('rgb(255, 99, 132)')
             ->options([
                 'pointRadius' => 1,

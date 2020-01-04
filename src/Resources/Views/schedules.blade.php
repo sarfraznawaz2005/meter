@@ -7,14 +7,14 @@
             <a class="nav-item nav-link active" data-toggle="tab" href="#graph">Graph</a>
         </li>
         <li class="nav-item">
-            <a class="nav-item nav-link" data-toggle="tab" href="#index">Events</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#index">Schedules</a>
         </li>
     </ul>
 
     <div class="tab-content bg-white p-4">
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
-            <div class="text-center text-primary"><strong>Events Per Day</strong></div>
+            <div class="text-center text-primary"><strong>Schedules Per Day</strong></div>
             <div>{!! $chart->container() !!}</div>
         </div>
 
@@ -24,8 +24,9 @@
                     <thead>
                     <tr>
                         <th>Happened</th>
-                        <th>Event</th>
-                        <th>Listeners</th>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Expression</th>
                         <th>More</th>
                     </tr>
                     </thead>
@@ -39,11 +40,12 @@
 @push('js')
     <script>
 
-        meterTable('.table', '{{ route('meter_events_table') }}', 25, [
+        meterTable('.table', '{{ route('meter_schedules_table') }}', 25, [
             {data: 'Happened'},
-            {data: 'Event'},
-            {data: 'Listeners'},
-            {data: 'More'}
+            {data: 'Command'},
+            {data: 'Description'},
+            {data: 'Expression'},
+            {data: 'More'},
         ], {
             "columnDefs": [
                 {"width": "10%", "targets": -1}

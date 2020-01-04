@@ -7,6 +7,7 @@ use Sarfraznawaz2005\Meter\Tables\CommandsTable;
 use Sarfraznawaz2005\Meter\Tables\EventsTable;
 use Sarfraznawaz2005\Meter\Tables\QueriesTable;
 use Sarfraznawaz2005\Meter\Tables\RequestsTable;
+use Sarfraznawaz2005\Meter\Tables\SchedulesTable;
 
 class TablesController extends Controller
 {
@@ -26,6 +27,11 @@ class TablesController extends Controller
     }
 
     public function eventsTable(EventsTable $table): array
+    {
+        return $table->getData();
+    }
+
+    public function schedulesTable(SchedulesTable $table): array
     {
         return $table->getData();
     }

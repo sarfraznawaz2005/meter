@@ -7,6 +7,7 @@ use Sarfraznawaz2005\Meter\Charts\CommandsByDayChart;
 use Sarfraznawaz2005\Meter\Charts\EventsByDayChart;
 use Sarfraznawaz2005\Meter\Charts\QueriesTimeChart;
 use Sarfraznawaz2005\Meter\Charts\RequestTimeChart;
+use Sarfraznawaz2005\Meter\Charts\SchedulesByDayChart;
 
 class PagesController extends Controller
 {
@@ -33,5 +34,10 @@ class PagesController extends Controller
     public function events(EventsByDayChart $chart)
     {
         return view('meter::events', compact('chart'));
+    }
+
+    public function schedules(SchedulesByDayChart $chart)
+    {
+        return view('meter::schedules', compact('chart'));
     }
 }

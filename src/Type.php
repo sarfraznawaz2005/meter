@@ -8,4 +8,5 @@ final class Type
     const REQUEST = 'request';
     const COMMAND = 'command';
     const EVENT = 'event';
+    const SCHEDULE = 'schedule';
 }
