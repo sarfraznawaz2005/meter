@@ -97,7 +97,9 @@ class RequestTimeChart extends Chart
                 'pointRadius' => 1,
                 'fill' => true,
                 'lineTension' => 0,
-                'borderWidth' => 1
+                'borderWidth' => 1,
+                //'minBarLength' => 50,
+                'barPercentage' => 0.5
             ])
             ->backgroundcolor('rgba(255, 99, 132, 0.7)');
     }
