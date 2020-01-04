@@ -174,3 +174,11 @@ pre.json .json_keyword {
 pre.json .json_keyword_braces {
     color: #2953e1;
 }
+
+a, a:active, a:visited {
+    color: #2953e1;
+}
+
+a:hover {
+    color: #ff1493;
+}
