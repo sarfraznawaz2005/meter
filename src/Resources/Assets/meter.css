@@ -158,3 +158,19 @@ table.dataTable {
     color: #2953e1;
     text-transform: uppercase;
 }
+
+#detailsModal pre {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+pre.json .json_keyword {
+    color: #c7254e;
+}
+
+pre.json .json_keyword_braces {
+    color: #2953e1;
+}

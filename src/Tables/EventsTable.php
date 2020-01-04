@@ -60,8 +60,8 @@ class EventsTable extends Table
             $data['Listeners'] = count($row['content']['listeners']);
 
             // additional for details button
-            $details['Listeners'] = json_encode($row['content']['listeners']);
-            $details['Payload'] = json_encode($row['content']['payload']);
+            $details['Listeners'] = '<pre class="json">' . json_encode($row['content']['listeners'], JSON_PRETTY_PRINT) . '</pre>';
+            $details['Payload'] = '<pre class="json">' . json_encode($row['content']['payload'], JSON_PRETTY_PRINT) . '</pre>';
             $details['Broadcast'] = $row['content']['broadcast'];
 
             $data['More'] = meterCenter(meterDetailsButton($details));

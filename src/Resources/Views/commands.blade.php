@@ -25,6 +25,7 @@
                         <th>Happened</th>
                         <th>Command</th>
                         <th>Exit Code</th>
+                        <th>More</th>
                     </tr>
                     </thead>
                 </table>
@@ -41,6 +42,7 @@
             {data: 'Happened'},
             {data: 'Command'},
             {data: 'Exit Code'},
+            {data: 'More'},
         ], {
             "columnDefs": [
                 {"width": "10%", "targets": -1}

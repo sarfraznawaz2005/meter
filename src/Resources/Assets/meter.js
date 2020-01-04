@@ -26,6 +26,7 @@ $(document).ready(function () {
 
     $('#detailsModal').on('shown.bs.modal', function () {
         meterHighlightSQL();
+        meterHighlightJson();
     });
 });
 
@@ -75,5 +76,15 @@ function meterHighlightSQL() {
 
     document.querySelectorAll("td .meter_sql").forEach(function(item) {
         item.innerHTML = item.innerHTML.replace(sqlReg,'<span class="sql_keyword">$1</span>');
+    });
+}
+
+// highlights JSON keywords
+function meterHighlightJson() {
+    var reg = /(.+?(?=: ))/g;
+
+    document.querySelectorAll("td pre.json").forEach(function(item) {
+        item.innerHTML = item.innerHTML.replace(/({|}|\[|\])/g,'<span class="json_keyword_braces">$1</span>');
+        item.innerHTML = item.innerHTML.replace(reg,'<span class="json_keyword">$1</span>');
     });
 }
