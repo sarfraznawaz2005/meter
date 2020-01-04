@@ -95,7 +95,7 @@ class QueriesTimeChart extends Chart
             ->color('rgb(255, 99, 132)')
             ->options([
                 'pointRadius' => 1,
-                'fill' => 1,
+                'fill' => true,
                 'lineTension' => 0,
                 'borderWidth' => 1
             ])
