@@ -60,7 +60,9 @@ class QueriesTimeChart extends Chart
     protected function setData(MeterModel $model)
     {
         foreach ($model->type(Type::QUERY)->orderBy('id', 'asc')->get() as $item) {
-            $this->data[(string)$item->created_at] = $item->content['time'];
+            if (isset($item->content['time'])) {
+                $this->data[(string)$item->created_at] = $item->content['time'];
+            }
         }
     }
 
