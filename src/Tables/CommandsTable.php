@@ -57,10 +57,10 @@ class CommandsTable extends Table
             $data['Happened'] = meterWithHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
             $data['Command'] = $row['content']['command'];
-            $data['Exit Code'] = meterCenter(meterAutoBadge($row['content']['exit_code'], [
+            $data['Exit Code'] = meterAutoBadge($row['content']['exit_code'], [
                 'success' => $row['content']['exit_code'] === 0,
                 'warning' => $row['content']['exit_code'] !== 0,
-            ]));
+            ]);
 
             // additional for details button
             $details['Arguments'] = '<pre class="json">' . json_encode($row['content']['arguments'], JSON_PRETTY_PRINT) . '</pre>';

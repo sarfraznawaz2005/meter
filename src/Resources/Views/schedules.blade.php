@@ -38,6 +38,9 @@
 @endsection
 
 @push('js')
+
+    {!! $chart->script() !!}
+
     <script>
 
         meterTable('.table', '{{ route('meter_schedules_table') }}', 25, [

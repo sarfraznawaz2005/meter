@@ -9,3 +9,7 @@
     </div>
 
 @endsection
+
+@push('js')
+    {!! $chart->script() !!}
+@endpush

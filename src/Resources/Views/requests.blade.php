@@ -15,7 +15,10 @@
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
             <div class="text-center text-primary"><strong>Response Times</strong></div>
-            <div>{!! $chart->container() !!}</div>
+            <div>{!! $timeChart->container() !!}</div>
+            <hr>
+            <div class="text-center text-primary"><strong>Memory Usage</strong></div>
+            <div>{!! $memoryChart->container() !!}</div>
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
@@ -41,6 +44,10 @@
 @endsection
 
 @push('js')
+
+    {!! $timeChart->script() !!}
+    {!! $memoryChart->script() !!}
+
     <script>
 
         meterTable('.table', '{{ route('meter_requests_table') }}', 25, [

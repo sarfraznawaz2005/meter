@@ -38,6 +38,9 @@
 @endsection
 
 @push('js')
+
+    {!! $chart->script() !!}
+
     <script>
 
         meterTable('.table', '{{ route('meter_queries_table') }}', 25, [

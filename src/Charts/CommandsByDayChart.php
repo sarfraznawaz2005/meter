@@ -105,7 +105,7 @@ class CommandsByDayChart extends Chart
                 'fill' => true,
                 'lineTension' => 0,
                 'borderWidth' => 1,
-                'barPercentage' => 0.5
+                'barPercentage' => 0.8
             ])
             ->backgroundcolor('rgba(255, 99, 132, 0.7)');
     }
