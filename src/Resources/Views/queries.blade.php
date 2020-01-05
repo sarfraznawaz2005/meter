@@ -13,6 +13,8 @@
 
     <div class="tab-content bg-white p-4">
 
+        @include('meter::layout.filters', ['route' => 'meter_queries'])
+
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
             <div class="text-center text-primary"><strong>Query Times</strong></div>
             <div>{!! $chart->container() !!}</div>
@@ -56,6 +58,10 @@
                 {"width": "10%", "targets": -2},
                 {"width": "10%", "targets": -3}
             ]
+        }, {
+            {{request()->has('days') ? 'days : ' . request()->days : ''}}
+            {{request()->has('slow') ? 'slow : 1' : ''}}
+            {{request()->has('all') ? 'all : 1' : ''}}
         });
 
     </script>

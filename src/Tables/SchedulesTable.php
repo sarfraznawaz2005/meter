@@ -40,7 +40,7 @@ class SchedulesTable extends Table
      */
     public function builder(): Builder
     {
-        return (new MeterModel)->type(Type::SCHEDULE)->orderBy('id', 'desc');
+        return (new MeterModel)->type(Type::SCHEDULE)->filtered()->orderBy('id', 'desc');
     }
 
     /**

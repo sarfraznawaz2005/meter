@@ -43,10 +43,11 @@ function meterSetup() {
 }
 
 // creates DataTables
-function meterTable(tableSelector, url, length, columns, extraOptions) {
+function meterTable(tableSelector, url, length, columns, extraOptions, data) {
 
     length = length || 10;
     extraOptions = extraOptions || {};
+    data = data || {};
 
     var options = {
         "serverSide": true,
@@ -59,7 +60,8 @@ function meterTable(tableSelector, url, length, columns, extraOptions) {
         "ajax": {
             "url": url,
             "dataType": "json",
-            "type": "GET"
+            "type": "GET",
+            "data": data
         },
         "columns": columns
     };

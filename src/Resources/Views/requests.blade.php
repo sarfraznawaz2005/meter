@@ -13,10 +13,14 @@
 
     <div class="tab-content bg-white p-4">
 
+        @include('meter::layout.filters', ['route' => 'meter_requests'])
+
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
             <div class="text-center text-primary"><strong>Response Times</strong></div>
             <div>{!! $timeChart->container() !!}</div>
+
             <hr>
+
             <div class="text-center text-primary"><strong>Memory Usage</strong></div>
             <div>{!! $memoryChart->container() !!}</div>
         </div>
@@ -63,6 +67,10 @@
             "columnDefs": [
                 {"width": "5%", "targets": -1}
             ]
+        }, {
+            {{request()->has('days') ? 'days : ' . request()->days : ''}}
+            {{request()->has('slow') ? 'slow : 1' : ''}}
+            {{request()->has('all') ? 'all : 1' : ''}}
         });
 
     </script>

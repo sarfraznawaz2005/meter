@@ -41,7 +41,7 @@ class QueriesTable extends Table
      */
     public function builder(): Builder
     {
-        return (new MeterModel)->type(Type::QUERY)->orderBy('id', 'desc');
+        return (new MeterModel)->type(Type::QUERY)->filtered()->orderBy('id', 'desc');
     }
 
     /**

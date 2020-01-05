@@ -40,7 +40,7 @@ class EventsTable extends Table
      */
     public function builder(): Builder
     {
-        return (new MeterModel)->type(Type::EVENT)->orderBy('id', 'desc');
+        return (new MeterModel)->type(Type::EVENT)->filtered()->orderBy('id', 'desc');
     }
 
     /**

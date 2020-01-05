@@ -61,6 +61,7 @@ class SchedulesByDayChart extends Chart
     protected function setData(MeterModel $model)
     {
         $this->data = $model->type(Type::SCHEDULE)
+            ->filtered()
             ->groupBy('date')
             ->orderBy('date', 'ASC')
             ->get([

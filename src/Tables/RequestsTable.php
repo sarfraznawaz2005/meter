@@ -40,7 +40,7 @@ class RequestsTable extends Table
      */
     public function builder(): Builder
     {
-        return (new MeterModel)->type(Type::REQUEST)->orderBy('id', 'desc');
+        return (new MeterModel)->type(Type::REQUEST)->filtered()->orderBy('id', 'desc');
     }
 
     /**

@@ -28,4 +28,33 @@ class MeterModel extends Model
     {
         return $query->where('type', $type);
     }
+
+    /**
+     * Scope the query for the given filter.
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeFiltered($query): Builder
+    {
+        if (request()->has('all')) {
+            $builder = $query;
+        } elseif (request()->has('days')) {
+            $date = now()->subDays(request()->days)->toDateString();
+            $builder = $query->whereRaw("created_at >= '$date 00:00:00'");
+        } elseif (request()->has('slow')) {
+            $builder = $query->where('is_slow', 1);
+        } else {
+            // default today
+            $builder = $query->whereRaw("created_at >= '" . now()->toDateString() . " 00:00:00'");
+        }
+
+        /*
+        if (!request()->expectsJson()) {
+            dump(meterGetSql($builder));
+        }
+        */
+
+        return $builder;
+    }
 }

@@ -61,6 +61,7 @@ class CommandsByDayChart extends Chart
     protected function setData(MeterModel $model)
     {
         $this->data = $model->type(Type::COMMAND)
+            ->filtered()
             ->groupBy('date')
             ->orderBy('date', 'ASC')
             ->get([

@@ -59,7 +59,7 @@ class RequestTimeChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        foreach ($model->type(Type::REQUEST)->orderBy('id', 'asc')->get() as $item) {
+        foreach ($model->type(Type::REQUEST)->filtered()->orderBy('id', 'asc')->get() as $item) {
             if (isset($item->content['duration'])) {
                 $this->data[(string)$item->created_at] = $item->content['duration'];
             }

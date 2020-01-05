@@ -21,6 +21,8 @@ class CreateMeterEntriesTable extends Migration
             $table->dateTime('created_at')->nullable();
 
             $table->index(['type']);
+            $table->index(['created_at']);
+            $table->index(['type', 'created_at']);
         });
     }
 

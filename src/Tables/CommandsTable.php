@@ -40,7 +40,7 @@ class CommandsTable extends Table
      */
     public function builder(): Builder
     {
-        return (new MeterModel)->type(Type::COMMAND)->orderBy('id', 'desc');
+        return (new MeterModel)->type(Type::COMMAND)->filtered()->orderBy('id', 'desc');
     }
 
     /**

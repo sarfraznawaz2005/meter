@@ -13,6 +13,8 @@
 
     <div class="tab-content bg-white p-4">
 
+        @include('meter::layout.filters', ['route' => 'meter_events'])
+
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
             <div class="text-center text-primary"><strong>Events Per Day</strong></div>
             <div>{!! $chart->container() !!}</div>
@@ -51,6 +53,10 @@
             "columnDefs": [
                 {"width": "10%", "targets": -1}
             ]
+        }, {
+            {{request()->has('days') ? 'days : ' . request()->days : ''}}
+            {{request()->has('slow') ? 'slow : 1' : ''}}
+            {{request()->has('all') ? 'all : 1' : ''}}
         });
 
     </script>

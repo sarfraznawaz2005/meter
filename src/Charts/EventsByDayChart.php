@@ -61,6 +61,7 @@ class EventsByDayChart extends Chart
     protected function setData(MeterModel $model)
     {
         $this->data = $model->type(Type::EVENT)
+            ->filtered()
             ->groupBy('date')
             ->orderBy('date', 'ASC')
             ->get([
