@@ -18,8 +18,8 @@ body, .card-body {
     font-size: .90rem;
 }
 
-.nav-item {
-    margin-left: 1px;
+.navbar-nav .nav-item {
+    margin-left: 5px;
 }
 
 .nav-tabs .nav-link {
