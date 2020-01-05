@@ -3,6 +3,7 @@
 namespace Sarfraznawaz2005\Meter\Charts;
 
 use Sarfraznawaz2005\Meter\Models\MeterModel;
+use Sarfraznawaz2005\Meter\Monitors\RequestMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
 class RequestMemoryChart extends Chart
@@ -93,8 +94,11 @@ class RequestMemoryChart extends Chart
      */
     protected function setDataSet()
     {
-        $this->dataset('Memory', 'bar', $this->getValues())
-            ->color('rgb(255, 99, 132)')
+        $type = config('meter.monitors.' . RequestMonitor::class . '.graph_type', 'bar');
+        $color = config('meter.monitors.' . RequestMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
+
+        $this->dataset('Memory', $type, $this->getValues())
+            ->color($color)
             ->options([
                 'pointRadius' => 1,
                 'fill' => true,
@@ -103,7 +107,7 @@ class RequestMemoryChart extends Chart
                 //'minBarLength' => 50,
                 'barPercentage' => 0.8
             ])
-            ->backgroundcolor('rgba(255, 99, 132, 0.7)');
+            ->backgroundcolor($color);
     }
 
 }

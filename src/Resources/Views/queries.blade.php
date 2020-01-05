@@ -11,28 +11,34 @@
         </li>
     </ul>
 
-    <div class="tab-content bg-white p-4">
-
-        @include('meter::layout.filters', ['route' => 'meter_queries'])
+    <div class="tab-content">
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
-            <div class="text-center text-primary"><strong>Query Times</strong></div>
-            <div>{!! $chart->container() !!}</div>
+            <div class="section">
+                @include('meter::layout.filters', ['route' => 'meter_queries'])
+
+                <div class="text-center text-primary"><strong>Query Times</strong></div>
+                <div>{!! $chart->container() !!}</div>
+            </div>
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
-            <div class="table-responsive-sm">
-                <table class="meter_table table table-hover mx-auto w-100">
-                    <thead>
-                    <tr>
-                        <th>Happened</th>
-                        <th>Query</th>
-                        <th>Time</th>
-                        <th>Slow</th>
-                        <th>More</th>
-                    </tr>
-                    </thead>
-                </table>
+            <div class="section">
+                @include('meter::layout.filters', ['route' => 'meter_queries'])
+
+                <div class="table-responsive-sm">
+                    <table class="meter_table table table-hover mx-auto w-100">
+                        <thead>
+                        <tr>
+                            <th>Happened</th>
+                            <th>Query</th>
+                            <th>Time</th>
+                            <th>Slow</th>
+                            <th>More</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

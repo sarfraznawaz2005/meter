@@ -3,6 +3,7 @@
 namespace Sarfraznawaz2005\Meter\Charts;
 
 use Sarfraznawaz2005\Meter\Models\MeterModel;
+use Sarfraznawaz2005\Meter\Monitors\QueryMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
 class QueriesTimeChart extends Chart
@@ -93,15 +94,18 @@ class QueriesTimeChart extends Chart
      */
     protected function setDataSet()
     {
-        $this->dataset('Time', 'bar', $this->getValues())
-            ->color('rgb(255, 99, 132)')
+        $type = config('meter.monitors.' . QueryMonitor::class . '.graph_type', 'bar');
+        $color = config('meter.monitors.' . QueryMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
+
+        $this->dataset('Time', $type, $this->getValues())
+            ->color($color)
             ->options([
                 'pointRadius' => 1,
                 'fill' => true,
                 'lineTension' => 0,
                 'borderWidth' => 1
             ])
-            ->backgroundcolor('rgba(255, 99, 132, 0.7)');
+            ->backgroundcolor($color);
     }
 
 }

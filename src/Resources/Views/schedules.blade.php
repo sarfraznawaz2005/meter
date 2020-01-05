@@ -11,28 +11,34 @@
         </li>
     </ul>
 
-    <div class="tab-content bg-white p-4">
-
-        @include('meter::layout.filters', ['route' => 'meter_schedules'])
+    <div class="tab-content">
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
-            <div class="text-center text-primary"><strong>Schedules Per Day</strong></div>
-            <div>{!! $chart->container() !!}</div>
+            <div class="section">
+                @include('meter::layout.filters', ['route' => 'meter_schedules'])
+
+                <div class="text-center text-primary"><strong>Schedules Per Day</strong></div>
+                <div>{!! $chart->container() !!}</div>
+            </div>
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
-            <div class="table-responsive-sm">
-                <table class="meter_table table table-hover mx-auto w-100">
-                    <thead>
-                    <tr>
-                        <th>Happened</th>
-                        <th>Command</th>
-                        <th>Description</th>
-                        <th>Expression</th>
-                        <th>More</th>
-                    </tr>
-                    </thead>
-                </table>
+            <div class="section">
+                @include('meter::layout.filters', ['route' => 'meter_schedules'])
+
+                <div class="table-responsive-sm">
+                    <table class="meter_table table table-hover mx-auto w-100">
+                        <thead>
+                        <tr>
+                            <th>Happened</th>
+                            <th>Command</th>
+                            <th>Description</th>
+                            <th>Expression</th>
+                            <th>More</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

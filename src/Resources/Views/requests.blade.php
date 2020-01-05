@@ -11,36 +11,41 @@
         </li>
     </ul>
 
-    <div class="tab-content bg-white p-4">
-
-        @include('meter::layout.filters', ['route' => 'meter_requests'])
-
+    <div class="tab-content">
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
-            <div class="text-center text-primary"><strong>Response Times</strong></div>
-            <div>{!! $timeChart->container() !!}</div>
+            <div class="section">
+                @include('meter::layout.filters', ['route' => 'meter_requests'])
 
-            <hr>
+                <div class="text-center text-primary"><strong>Response Times</strong></div>
+                <div>{!! $timeChart->container() !!}</div>
+            </div>
 
-            <div class="text-center text-primary"><strong>Memory Usage</strong></div>
-            <div>{!! $memoryChart->container() !!}</div>
+            <div class="section">
+                <div class="text-center text-primary"><strong>Memory Usage</strong></div>
+                <div>{!! $memoryChart->container() !!}</div>
+            </div>
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
-            <div class="table-responsive-sm">
-                <table class="meter_table table table-hover mx-auto w-100">
-                    <thead>
-                    <tr>
-                        <th>Happened</th>
-                        <th>Verb</th>
-                        <th>Path</th>
-                        <th>Status</th>
-                        <th>Time</th>
-                        <th>Memory</th>
-                        <th>Slow</th>
-                        <th>More</th>
-                    </tr>
-                    </thead>
-                </table>
+            <div class="section">
+                @include('meter::layout.filters', ['route' => 'meter_requests'])
+
+                <div class="table-responsive-sm">
+                    <table class="meter_table table table-hover mx-auto w-100">
+                        <thead>
+                        <tr>
+                            <th>Happened</th>
+                            <th>Verb</th>
+                            <th>Path</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                            <th>Memory</th>
+                            <th>Slow</th>
+                            <th>More</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

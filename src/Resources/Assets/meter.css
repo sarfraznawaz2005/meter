@@ -10,7 +10,7 @@ body, .card-body {
 }
 
 .card-body {
-    padding: 0.50rem;
+    padding: 1.5rem 0.50rem 0.50rem 0.50rem;
 }
 
 .table td {
@@ -19,7 +19,11 @@ body, .card-body {
 }
 
 .nav-item {
-    margin-left: 5px;
+    margin-left: 1px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
 }
 
 .nav-item a {
@@ -33,7 +37,7 @@ body, .card-body {
 }
 
 .table th:last-child {
-	text-align:center;
+    text-align: center;
 }
 
 .card {
@@ -130,7 +134,7 @@ table.dataTable {
     font-size: 1.2rem;
 }
 
-.modal-dialog{
+.modal-dialog {
     position: relative;
     display: table;
     overflow-y: auto;
@@ -147,6 +151,13 @@ table.dataTable {
 .tab-content, .main {
     border-radius: 10px;
     margin: 0 10px 50px 10px;
+}
+
+.section {
+    border-radius: 10px;
+    margin: 0 10px 25px 10px;
+    background: #fff;
+    padding: 1.5rem;
 }
 
 .meter_sql {

@@ -4,6 +4,7 @@ namespace Sarfraznawaz2005\Meter\Charts;
 
 use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
+use Sarfraznawaz2005\Meter\Monitors\EventMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
 class EventsByDayChart extends Chart
@@ -99,8 +100,11 @@ class EventsByDayChart extends Chart
      */
     protected function setDataSet()
     {
-        $this->dataset('Total Events', 'bar', $this->getValues())
-            ->color('rgb(255, 99, 132)')
+        $type = config('meter.monitors.' . EventMonitor::class . '.graph_type', 'bar');
+        $color = config('meter.monitors.' . EventMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
+
+        $this->dataset('Total Events', $type, $this->getValues())
+            ->color($color)
             ->options([
                 'pointRadius' => 1,
                 'fill' => true,
@@ -108,7 +112,7 @@ class EventsByDayChart extends Chart
                 'borderWidth' => 1,
                 'barPercentage' => 0.8
             ])
-            ->backgroundcolor('rgba(255, 99, 132, 0.7)');
+            ->backgroundcolor($color);
     }
 
 }
