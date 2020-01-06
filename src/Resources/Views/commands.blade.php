@@ -4,10 +4,14 @@
 
     <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-            <a class="nav-item nav-link active" data-toggle="tab" href="#graph">Graph</a>
+            <a class="nav-item nav-link active" data-toggle="tab" href="#graph">
+                <i class="fa fa-bar-chart"></i> Graph
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-item nav-link" data-toggle="tab" href="#index">Commands</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#index">
+                <i class="fa fa-table"></i> Commands
+            </a>
         </li>
     </ul>
 
