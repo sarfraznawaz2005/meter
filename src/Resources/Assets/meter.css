@@ -176,6 +176,7 @@ table.dataTable {
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
+    white-space: normal;
 }
 
 pre.json .json_keyword {
