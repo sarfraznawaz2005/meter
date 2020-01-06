@@ -186,10 +186,10 @@ pre.json .json_keyword_braces {
     color: #2953e1;
 }
 
-.card-body a, .card-body a:active, .card-body a:visited {
+a.nav-link, a.nav-link:active, a.nav-link:visited {
     color: #2953e1;
 }
 
-.card-body a:hover {
+a.nav-link:hover {
     color: #ff1493;
 }

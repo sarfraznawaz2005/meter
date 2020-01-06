@@ -40,6 +40,7 @@ class MeterModel extends Model
         if (request()->has('all')) {
             $builder = $query;
         } elseif (request()->has('days')) {
+            // not using "WHERE DATE(created_at)" since created_at is index column.
             $date = now()->subDays(request()->days)->toDateString();
             $builder = $query->whereRaw("created_at >= '$date 00:00:00'");
         } elseif (request()->has('slow')) {
