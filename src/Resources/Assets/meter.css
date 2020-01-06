@@ -193,3 +193,10 @@ a.nav-link, a.nav-link:active, a.nav-link:visited {
 a.nav-link:hover {
     color: #ff1493;
 }
+
+div.table-responsive-sm {
+    background: #EDF1F3;
+    padding: 20px 5px;
+    border-radius: 10px;
+    margin: 10px;
+}
