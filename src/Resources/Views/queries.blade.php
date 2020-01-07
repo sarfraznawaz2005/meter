@@ -21,8 +21,13 @@
             <div class="section">
                 @include('meter::layout.filters', ['route' => 'meter_queries'])
 
-                <div class="text-center text-primary"><strong>Query Times</strong></div>
-                <div>{!! $chart->container() !!}</div>
+                <div class="text-center text-primary"><strong>All Query Times</strong></div>
+                <div>{!! $queriesTimeChart->container() !!}</div>
+            </div>
+
+            <div class="section">
+                <div class="text-center text-primary"><strong>Slow Query Times</strong></div>
+                <div>{!! $queriesSlowChart->container() !!}</div>
             </div>
         </div>
 
@@ -51,7 +56,8 @@
 
 @push('js')
 
-    {!! $chart->script() !!}
+    {!! $queriesTimeChart->script() !!}
+    {!! $queriesSlowChart->script() !!}
 
     <script>
 

@@ -1,12 +1,13 @@
 <?php
 
-namespace Sarfraznawaz2005\Meter\Charts;
+namespace Sarfraznawaz2005\Meter\Charts\Query;
 
+use Sarfraznawaz2005\Meter\Charts\Chart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Monitors\QueryMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
-class QueriesTimeChart extends Chart
+class QueriesSlowChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -60,7 +61,7 @@ class QueriesTimeChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        foreach ($model->type(Type::QUERY)->filtered()->orderBy('id', 'asc')->get() as $item) {
+        foreach ($model->type(Type::QUERY)->where('is_slow', 1)->filtered()->orderBy('id', 'asc')->get() as $item) {
             if (isset($item->content['time'])) {
                 $this->data[(string)$item->created_at] = $item->content['time'];
             }
