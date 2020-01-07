@@ -1,7 +1,8 @@
 <?php
 
-namespace Sarfraznawaz2005\Meter\Charts;
+namespace Sarfraznawaz2005\Meter\Charts\Request;
 
+use Sarfraznawaz2005\Meter\Charts\Chart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Monitors\RequestMonitor;
 use Sarfraznawaz2005\Meter\Type;

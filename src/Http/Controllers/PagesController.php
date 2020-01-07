@@ -6,8 +6,9 @@ use Illuminate\Routing\Controller;
 use Sarfraznawaz2005\Meter\Charts\CommandsByDayChart;
 use Sarfraznawaz2005\Meter\Charts\EventsByDayChart;
 use Sarfraznawaz2005\Meter\Charts\QueriesTimeChart;
-use Sarfraznawaz2005\Meter\Charts\RequestMemoryChart;
-use Sarfraznawaz2005\Meter\Charts\RequestTimeChart;
+use Sarfraznawaz2005\Meter\Charts\Request\RequestMemoryChart;
+use Sarfraznawaz2005\Meter\Charts\Request\RequestSlowChart;
+use Sarfraznawaz2005\Meter\Charts\Request\RequestTimeChart;
 use Sarfraznawaz2005\Meter\Charts\SchedulesByDayChart;
 
 class PagesController extends Controller
@@ -22,9 +23,9 @@ class PagesController extends Controller
         return view('meter::queries', compact('chart'));
     }
 
-    public function requests(RequestTimeChart $timeChart, RequestMemoryChart $memoryChart)
+    public function requests(RequestTimeChart $timeChart, RequestSlowChart $requestSlowChart, RequestMemoryChart $memoryChart)
     {
-        return view('meter::requests', compact('timeChart', 'memoryChart'));
+        return view('meter::requests', compact('timeChart', 'requestSlowChart', 'memoryChart'));
     }
 
     public function commands(CommandsByDayChart $chart)
