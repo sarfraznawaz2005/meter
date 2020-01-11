@@ -73,59 +73,61 @@
         </div>
     </div>
 
-    <div class="section">
-        @include('meter::layout.filters', ['route' => 'meter_home'])
+    @include('meter::layout.filters', ['route' => 'meter_home'])
 
+    <div class="d-flex flex-wrap">
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.enabled', true))
-            <div class="row">
-                <div class="col-6">
+            <div class="w-50">
+                <div class="section">
                     <div class="text-center text-primary"><strong>Response Times</strong></div>
                     <div>{!! $requestTimeChart->container() !!}</div>
                 </div>
-                <div class="col-6">
+            </div>
+            <div class="w-50">
+                <div class="section">
                     <div class="text-center text-primary"><strong>Memory Usage</strong></div>
                     <div>{!! $memoryChart->container() !!}</div>
                 </div>
             </div>
-            <br>
         @endif
 
-        <div class="row">
-            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.enabled', true))
-                <div class="col-6">
+        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.enabled', true))
+            <div class="w-50">
+                <div class="section">
                     <div class="text-center text-primary"><strong>Query Times</strong></div>
                     <div>{!! $queriesTimeChart->container() !!}</div>
                 </div>
-            @endif
+            </div>
+        @endif
 
-            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.enabled', true))
-                <div
-                    class="col-{{config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.enabled', true) ? '6' : '12'}}">
+        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.enabled', true))
+            <div class="w-50">
+                <div class="section">
                     <div class="text-center text-primary"><strong>Commands Per Day</strong></div>
                     <div>{!! $commandsByDayChart->container() !!}</div>
                 </div>
-            @endif
-        </div>
-        <br>
+            </div>
+        @endif
 
-        <div class="row">
-            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
-                <div class="col-6">
+        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
+            <div class="w-50">
+                <div class="section">
                     <div class="text-center text-primary"><strong>Events Per Day</strong></div>
                     <div>{!! $eventsByDayChart->container() !!}</div>
                 </div>
-            @endif
+            </div>
+        @endif
 
-            @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.enabled', true))
-                <div
-                    class="col-{{config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true) ? '6' : '12'}}">
+        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.enabled', true))
+            <div class="w-50">
+                <div class="section">
                     <div class="text-center text-primary"><strong>Schedules Per Day</strong></div>
                     <div>{!! $schedulesByDayChart->container() !!}</div>
                 </div>
-            @endif
-        </div>
-
+            </div>
+        @endif
     </div>
+
 
 @endsection
 
