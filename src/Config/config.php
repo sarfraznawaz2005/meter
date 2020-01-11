@@ -94,5 +94,15 @@ return [
             'graph_type' => env('METER_SCHEDULE_GRAPH_TYPE', 'bar'), // bar, line
             'graph_color' => env('METER_SCHEDULE_GRAPH_COLOR', 'rgb(255, 99, 132)'),
         ],
-    ]
+    ],
+
+    // Graph/Table filters. "All" will be added automatically.
+    'filters' => [
+        'Today' => 1,
+        '7 Day' => 7,
+        '1 Month' => 30,
+        '3 Month' => 90,
+        '6 Month' => 180,
+        '1 Year' => 365,
+    ],
 ];
