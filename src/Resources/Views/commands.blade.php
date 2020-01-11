@@ -21,7 +21,7 @@
             <div class="section">
                 @include('meter::layout.filters', ['route' => 'meter_commands'])
 
-                <div class="text-center text-primary"><strong>Commands Per Day</strong></div>
+                <div class="text-center text-primary"><strong>Command Times</strong></div>
                 <div>{!! $chart->container() !!}</div>
             </div>
         </div>

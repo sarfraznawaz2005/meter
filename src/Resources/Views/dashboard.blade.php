@@ -85,7 +85,7 @@
             </div>
             <div class="w-50">
                 <div class="section">
-                    <div class="text-center text-primary"><strong>Memory Usage</strong></div>
+                    <div class="text-center text-primary"><strong>Request Memory Usage</strong></div>
                     <div>{!! $memoryChart->container() !!}</div>
                 </div>
             </div>
@@ -103,8 +103,8 @@
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.enabled', true))
             <div class="w-50">
                 <div class="section">
-                    <div class="text-center text-primary"><strong>Commands Per Day</strong></div>
-                    <div>{!! $commandsByDayChart->container() !!}</div>
+                    <div class="text-center text-primary"><strong>Command Times</strong></div>
+                    <div>{!! $commandsTimeChart->container() !!}</div>
                 </div>
             </div>
         @endif
@@ -112,8 +112,8 @@
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
             <div class="w-50">
                 <div class="section">
-                    <div class="text-center text-primary"><strong>Events Per Day</strong></div>
-                    <div>{!! $eventsByDayChart->container() !!}</div>
+                    <div class="text-center text-primary"><strong>Event Times</strong></div>
+                    <div>{!! $eventsTimeChart->container() !!}</div>
                 </div>
             </div>
         @endif
@@ -121,8 +121,8 @@
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.enabled', true))
             <div class="w-50">
                 <div class="section">
-                    <div class="text-center text-primary"><strong>Schedules Per Day</strong></div>
-                    <div>{!! $schedulesByDayChart->container() !!}</div>
+                    <div class="text-center text-primary"><strong>Schedule Times</strong></div>
+                    <div>{!! $schedulesTimeChart->container() !!}</div>
                 </div>
             </div>
         @endif
@@ -135,7 +135,7 @@
     {!! $requestTimeChart->script() !!}
     {!! $memoryChart->script() !!}
     {!! $queriesTimeChart->script() !!}
-    {!! $commandsByDayChart->script() !!}
-    {!! $eventsByDayChart->script() !!}
-    {!! $schedulesByDayChart->script() !!}
+    {!! $commandsTimeChart->script() !!}
+    {!! $eventsTimeChart->script() !!}
+    {!! $schedulesTimeChart->script() !!}
 @endpush

@@ -17,6 +17,8 @@ class EventMonitor extends Monitor
 {
     use FormatsClosure;
 
+    protected $startTime = 0;
+
     /**
      * Listens to event(s) and performs actions.
      *
@@ -25,6 +27,8 @@ class EventMonitor extends Monitor
      */
     public function register($app)
     {
+        $this->startTime = microtime(true);
+
         return $app->events->listen('*', [$this, 'collect']);
     }
 
@@ -44,6 +48,7 @@ class EventMonitor extends Monitor
         $formattedPayload = $this->extractPayload($eventName, $payload);
 
         $content = [
+            'time' => floor((microtime(true) - $this->startTime) * 1000),
             'name' => $eventName,
             'payload' => empty($formattedPayload) ? null : $formattedPayload,
             'listeners' => $this->formatListeners($eventName),

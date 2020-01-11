@@ -2,12 +2,11 @@
 
 namespace Sarfraznawaz2005\Meter\Charts;
 
-use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Monitors\CommandMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
-class CommandsByDayChart extends Chart
+class CommandsTimeChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -31,7 +30,7 @@ class CommandsByDayChart extends Chart
                     ],
                     'scaleLabel' => [
                         'display' => true,
-                        'labelString' => 'Total Commands'
+                        'labelString' => 'Command Time (ms)'
                     ],
                 ]],
                 'xAxes' => [[
@@ -61,16 +60,11 @@ class CommandsByDayChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        $this->data = $model->type(Type::COMMAND)
-            ->filtered()
-            ->groupBy('date')
-            ->orderBy('date', 'ASC')
-            ->get([
-                DB::raw('DATE(created_at) as date'),
-                DB::raw('COUNT(*) as "total"')
-            ])
-            ->pluck('total', 'date')
-            ->toArray();
+        foreach ($model->type(Type::COMMAND)->filtered()->orderBy('id', 'asc')->get() as $item) {
+            if (isset($item->content['time'])) {
+                $this->data[(string)$item->created_at] = $item->content['time'];
+            }
+        }
     }
 
     /**
@@ -103,7 +97,7 @@ class CommandsByDayChart extends Chart
         $type = config('meter.monitors.' . CommandMonitor::class . '.graph_type', 'bar');
         $color = config('meter.monitors.' . CommandMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
 
-        $this->dataset('Total Commands', $type, $this->getValues())
+        $this->dataset('Command Time', $type, $this->getValues())
             ->color($color)
             ->options([
                 'pointRadius' => 1,

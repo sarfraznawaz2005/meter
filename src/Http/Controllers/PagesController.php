@@ -4,14 +4,14 @@ namespace Sarfraznawaz2005\Meter\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use Sarfraznawaz2005\Meter\Charts\CommandsByDayChart;
-use Sarfraznawaz2005\Meter\Charts\EventsByDayChart;
+use Sarfraznawaz2005\Meter\Charts\CommandsTimeChart;
+use Sarfraznawaz2005\Meter\Charts\EventsTimeChart;
 use Sarfraznawaz2005\Meter\Charts\Query\QueriesSlowChart;
 use Sarfraznawaz2005\Meter\Charts\Query\QueriesTimeChart;
 use Sarfraznawaz2005\Meter\Charts\Request\RequestMemoryChart;
 use Sarfraznawaz2005\Meter\Charts\Request\RequestSlowChart;
 use Sarfraznawaz2005\Meter\Charts\Request\RequestTimeChart;
-use Sarfraznawaz2005\Meter\Charts\SchedulesByDayChart;
+use Sarfraznawaz2005\Meter\Charts\SchedulesTimeChart;
 
 class PagesController extends Controller
 {
@@ -19,9 +19,9 @@ class PagesController extends Controller
         RequestTimeChart $requestTimeChart,
         RequestMemoryChart $memoryChart,
         QueriesTimeChart $queriesTimeChart,
-        CommandsByDayChart $commandsByDayChart,
-        EventsByDayChart $eventsByDayChart,
-        SchedulesByDayChart $schedulesByDayChart
+        CommandsTimeChart $commandsTimeChart,
+        EventsTimeChart $eventsTimeChart,
+        SchedulesTimeChart $schedulesTimeChart
     )
     {
         $totals = DB::table('meter_entries')
@@ -39,9 +39,9 @@ class PagesController extends Controller
                 'requestTimeChart',
                 'memoryChart',
                 'queriesTimeChart',
-                'commandsByDayChart',
-                'eventsByDayChart',
-                'schedulesByDayChart'
+                'commandsTimeChart',
+                'eventsTimeChart',
+                'schedulesTimeChart'
             )
         );
     }
@@ -60,17 +60,17 @@ class PagesController extends Controller
         return view('meter::requests', compact('timeChart', 'requestSlowChart', 'memoryChart'));
     }
 
-    public function commands(CommandsByDayChart $chart)
+    public function commands(CommandsTimeChart $chart)
     {
         return view('meter::commands', compact('chart'));
     }
 
-    public function events(EventsByDayChart $chart)
+    public function events(EventsTimeChart $chart)
     {
         return view('meter::events', compact('chart'));
     }
 
-    public function schedules(SchedulesByDayChart $chart)
+    public function schedules(SchedulesTimeChart $chart)
     {
         return view('meter::schedules', compact('chart'));
     }

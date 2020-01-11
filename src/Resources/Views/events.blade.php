@@ -21,7 +21,7 @@
             <div class="section">
                 @include('meter::layout.filters', ['route' => 'meter_events'])
 
-                <div class="text-center text-primary"><strong>Events Per Day</strong></div>
+                <div class="text-center text-primary"><strong>Event Times</strong></div>
                 <div>{!! $chart->container() !!}</div>
             </div>
         </div>

@@ -13,6 +13,8 @@ use Sarfraznawaz2005\Meter\Type;
 
 class ScheduleMonitor extends Monitor
 {
+    protected $startTime = 0;
+
     /**
      * Listens to event(s) and performs actions.
      *
@@ -21,6 +23,8 @@ class ScheduleMonitor extends Monitor
      */
     public function register($app)
     {
+        $this->startTime = microtime(true);
+
         return $app->events->listen(CommandStarting::class, [$this, 'collect']);
     }
 
@@ -41,6 +45,7 @@ class ScheduleMonitor extends Monitor
                 $expression = CronExpression::factory($event->expression);
 
                 $content = [
+                    'time' => floor((microtime(true) - $this->startTime) * 1000),
                     'command' => $event instanceof CallbackEvent ? 'Closure' : $this->fixupCommand($event->command),
                     'description' => $event->description,
                     'expression' => $event->expression,

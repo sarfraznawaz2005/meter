@@ -2,12 +2,11 @@
 
 namespace Sarfraznawaz2005\Meter\Charts;
 
-use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
-use Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor;
+use Sarfraznawaz2005\Meter\Monitors\EventMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
-class SchedulesByDayChart extends Chart
+class EventsTimeChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -31,7 +30,7 @@ class SchedulesByDayChart extends Chart
                     ],
                     'scaleLabel' => [
                         'display' => true,
-                        'labelString' => 'Total Commands'
+                        'labelString' => 'Event Time (ms)'
                     ],
                 ]],
                 'xAxes' => [[
@@ -61,16 +60,11 @@ class SchedulesByDayChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        $this->data = $model->type(Type::SCHEDULE)
-            ->filtered()
-            ->groupBy('date')
-            ->orderBy('date', 'ASC')
-            ->get([
-                DB::raw('DATE(created_at) as date'),
-                DB::raw('COUNT(*) as "total"')
-            ])
-            ->pluck('total', 'date')
-            ->toArray();
+        foreach ($model->type(Type::EVENT)->filtered()->orderBy('id', 'asc')->get() as $item) {
+            if (isset($item->content['time'])) {
+                $this->data[(string)$item->created_at] = $item->content['time'];
+            }
+        }
     }
 
     /**
@@ -100,10 +94,10 @@ class SchedulesByDayChart extends Chart
      */
     protected function setDataSet()
     {
-        $type = config('meter.monitors.' . ScheduleMonitor::class . '.graph_type', 'bar');
-        $color = config('meter.monitors.' . ScheduleMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
+        $type = config('meter.monitors.' . EventMonitor::class . '.graph_type', 'bar');
+        $color = config('meter.monitors.' . EventMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
 
-        $this->dataset('Total Commands', $type, $this->getValues())
+        $this->dataset('Event Time', $type, $this->getValues())
             ->color($color)
             ->options([
                 'pointRadius' => 1,
