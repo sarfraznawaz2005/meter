@@ -1,8 +1,9 @@
-body, .card-body {
+body, .wrapper {
     font-family: Nunito !important;
     background: #edf1f3;
     color: #333;
     font-size: .95rem;
+    border-radius: unset !important;
 }
 
 .logo {
@@ -199,4 +200,8 @@ div.table-responsive-sm {
     padding: 20px 5px;
     border-radius: 10px;
     margin: 10px;
+}
+
+.totals a {
+    text-decoration: none;
 }

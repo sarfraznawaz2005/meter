@@ -3,6 +3,7 @@
 namespace Sarfraznawaz2005\Meter\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Charts\CommandsByDayChart;
 use Sarfraznawaz2005\Meter\Charts\EventsByDayChart;
 use Sarfraznawaz2005\Meter\Charts\Query\QueriesSlowChart;
@@ -14,9 +15,35 @@ use Sarfraznawaz2005\Meter\Charts\SchedulesByDayChart;
 
 class PagesController extends Controller
 {
-    public function home(RequestTimeChart $chart)
+    public function home(
+        RequestTimeChart $requestTimeChart,
+        RequestMemoryChart $memoryChart,
+        QueriesTimeChart $queriesTimeChart,
+        CommandsByDayChart $commandsByDayChart,
+        EventsByDayChart $eventsByDayChart,
+        SchedulesByDayChart $schedulesByDayChart
+    )
     {
-        return view('meter::dashboard', compact('chart'));
+        $totals = DB::table('meter_entries')
+            ->selectRaw('count(*) as total')
+            ->selectRaw("count(case when type = 'command' then 1 end) as commands")
+            ->selectRaw("count(case when type = 'event' then 1 end) as events")
+            ->selectRaw("count(case when type = 'query' then 1 end) as queries")
+            ->selectRaw("count(case when type = 'request' then 1 end) as requests")
+            ->selectRaw("count(case when type = 'schedule' then 1 end) as schedules")
+            ->first();
+
+        return view(
+            'meter::dashboard', compact(
+                'totals',
+                'requestTimeChart',
+                'memoryChart',
+                'queriesTimeChart',
+                'commandsByDayChart',
+                'eventsByDayChart',
+                'schedulesByDayChart'
+            )
+        );
     }
 
     public function queries(QueriesTimeChart $queriesTimeChart, QueriesSlowChart $queriesSlowChart)

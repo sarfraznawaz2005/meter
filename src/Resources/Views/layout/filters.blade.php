@@ -1,4 +1,4 @@
-<div class="btn-group d-flex align-items-center justify-content-center">
+<div class="btn-group d-flex align-items-center justify-content-center filters">
 
     @foreach(config('meter.filters', []) as $name => $days)
         <a
@@ -21,7 +21,9 @@
     @push('js')
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                document.querySelectorAll('.btnfilter')[0].className = 'btn btnfilter btn-sm btn-primary ';
+                document.querySelectorAll('.filters').forEach(function (filters) {
+                    filters.querySelectorAll('.btnfilter')[0].className = 'btn btnfilter btn-sm btn-primary';
+                });
             });
         </script>
     @endpush

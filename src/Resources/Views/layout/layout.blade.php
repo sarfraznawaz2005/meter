@@ -20,7 +20,7 @@
 
 @include('meter::layout.links')
 
-<div class="card">
+<div class="card wrapper">
     <div class="card-body">
         @yield('content')
     </div>
