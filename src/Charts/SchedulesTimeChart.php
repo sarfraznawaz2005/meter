@@ -21,7 +21,11 @@ class SchedulesTimeChart extends Chart
             'maintainAspectRatio' => false,
             'title' => [
                 'display' => true,
-                'text' => ['Average: ' . round(collect($this->getValues())->pluck('y')->average()). 'ms'],
+                'text' => [
+                    'Min ' . round(collect($this->getValues())->pluck('y')->min()) . ' | ' .
+                    'Avg ' . round(collect($this->getValues())->pluck('y')->average()) . ' | ' .
+                    'Max ' . round(collect($this->getValues())->pluck('y')->max())
+                ],
             ],
             'legend' => false,
             'scales' => [
