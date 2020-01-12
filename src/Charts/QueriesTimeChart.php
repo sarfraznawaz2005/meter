@@ -2,6 +2,8 @@
 
 namespace Sarfraznawaz2005\Meter\Charts;
 
+use Balping\JsonRaw\Raw;
+use Illuminate\Support\Str;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Monitors\QueryMonitor;
 use Sarfraznawaz2005\Meter\Type;
@@ -49,6 +51,11 @@ class QueriesTimeChart extends Chart
                     'offset' => true,
                 ]]
             ],
+            'tooltips' => [
+                'callbacks' => [
+                    'label' => new Raw('function(item, data) { return "Time: " + data.datasets[item.datasetIndex].data[item.index].y + " (Query: " + data.datasets[item.datasetIndex].data[item.index].x + ")"}')
+                ]
+            ],
         ], true);
     }
 
@@ -62,7 +69,10 @@ class QueriesTimeChart extends Chart
     {
         foreach ($model->type(Type::QUERY)->filtered()->orderBy('id', 'asc')->get() as $item) {
             if (isset($item->content['time'])) {
-                $this->data[(string)$item->created_at] = $item->content['time'];
+                $this->data[(string)$item->created_at] = [
+                    'x' => Str::limit($item->content['sql'], 120),
+                    'y' => $item->content['time'],
+                ];
             }
         }
     }
@@ -95,17 +105,18 @@ class QueriesTimeChart extends Chart
     protected function setDataSet()
     {
         $type = config('meter.monitors.' . QueryMonitor::class . '.graph_type', 'bar');
-        $color = config('meter.monitors.' . QueryMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
 
-        $this->dataset('Time', $type, $this->getValues())
-            ->color($color)
+        $this->dataset('Query Time', $type, $this->getValues())
+            ->color('rgb(255, 99, 132)')
             ->options([
-                'pointRadius' => 1,
+                'pointRadius' => 2,
                 'fill' => true,
                 'lineTension' => 0,
-                'borderWidth' => 1
+                'borderWidth' => 1,
+                //'minBarLength' => 50,
+                'barPercentage' => 0.9
             ])
-            ->backgroundcolor($color);
+            ->backgroundcolor('rgba(255, 99, 132, 0.6)');
     }
 
 }

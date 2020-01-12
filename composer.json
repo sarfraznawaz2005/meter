@@ -25,7 +25,8 @@
     "require": {
         "php": ">=7.0",
         "illuminate/support": "~5|~6",
-        "consoletvs/charts": "6.*"
+        "consoletvs/charts": "6.*",
+        "balping/json-raw-encoder": "^1.0"
     },
     "autoload": {
         "psr-4": {

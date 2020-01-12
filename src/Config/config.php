@@ -64,7 +64,6 @@ return [
             'enabled' => env('METER_REQUEST_MONITOR', true),
             'slow' => 3000, // considered slow if equal or over given time in ms
             'graph_type' => env('METER_REQUEST_GRAPH_TYPE', 'bar'), // bar, line
-            'graph_color' => env('METER_REQUEST_GRAPH_COLOR', 'rgb(255, 99, 132)'),
         ],
 
         Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class => [
@@ -72,27 +71,23 @@ return [
             'ignore_packages' => true,
             'slow' => 300, // considered slow if equal or over given time in ms
             'graph_type' => env('METER_QUERY_GRAPH_TYPE', 'bar'), // bar, line
-            'graph_color' => env('METER_QUERY_GRAPH_COLOR', 'rgb(255, 99, 132)'),
         ],
 
         Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class => [
             'enabled' => env('METER_COMMAND_MONITOR', true),
             'ignore' => [],
             'graph_type' => env('METER_COMMAND_GRAPH_TYPE', 'bar'), // bar, line
-            'graph_color' => env('METER_COMMAND_GRAPH_COLOR', 'rgb(255, 99, 132)'),
         ],
 
         Sarfraznawaz2005\Meter\Monitors\EventMonitor::class => [
             'enabled' => env('METER_EVENT_MONITOR', true),
             'ignore' => [],
             'graph_type' => env('METER_EVENT_GRAPH_TYPE', 'bar'), // bar, line
-            'graph_color' => env('METER_EVENT_GRAPH_COLOR', 'rgb(255, 99, 132)'),
         ],
 
         Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class => [
             'enabled' => env('METER_SCHEDULE_MONITOR', true),
             'graph_type' => env('METER_SCHEDULE_GRAPH_TYPE', 'bar'), // bar, line
-            'graph_color' => env('METER_SCHEDULE_GRAPH_COLOR', 'rgb(255, 99, 132)'),
         ],
     ],
 

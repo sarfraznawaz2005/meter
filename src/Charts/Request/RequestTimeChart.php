@@ -2,6 +2,7 @@
 
 namespace Sarfraznawaz2005\Meter\Charts\Request;
 
+use Balping\JsonRaw\Raw;
 use Sarfraznawaz2005\Meter\Charts\Chart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Monitors\RequestMonitor;
@@ -21,7 +22,7 @@ class RequestTimeChart extends Chart
             'maintainAspectRatio' => false,
             'title' => [
                 'display' => true,
-                'text' => ['Average: ' . round(collect($this->getValues())->average()) . 'ms'],
+                'text' => ['Average: ' . round(collect($this->getValues())->pluck('y')->average()) . 'ms'],
             ],
             'legend' => false,
             'scales' => [
@@ -50,6 +51,11 @@ class RequestTimeChart extends Chart
                     'offset' => true,
                 ]]
             ],
+            'tooltips' => [
+                'callbacks' => [
+                    'label' => new Raw('function(item, data) { return "Time: " + data.datasets[item.datasetIndex].data[item.index].y + " (Path: " + data.datasets[item.datasetIndex].data[item.index].x + ")"}')
+                ]
+            ],
         ], true);
     }
 
@@ -63,7 +69,10 @@ class RequestTimeChart extends Chart
     {
         foreach ($model->type(Type::REQUEST)->filtered()->orderBy('id', 'asc')->get() as $item) {
             if (isset($item->content['duration'])) {
-                $this->data[(string)$item->created_at] = $item->content['duration'];
+                $this->data[(string)$item->created_at] = [
+                    'x' => $item->content['uri'],
+                    'y' => $item->content['duration'],
+                ];
             }
         }
     }
@@ -96,19 +105,18 @@ class RequestTimeChart extends Chart
     protected function setDataSet()
     {
         $type = config('meter.monitors.' . RequestMonitor::class . '.graph_type', 'bar');
-        $color = config('meter.monitors.' . RequestMonitor::class . '.graph_color', 'rgb(255, 99, 132)');
 
         $this->dataset('Response Time', $type, $this->getValues())
-            ->color($color)
+            ->color('rgb(255, 99, 132)')
             ->options([
-                'pointRadius' => 1,
+                'pointRadius' => 2,
                 'fill' => true,
                 'lineTension' => 0,
                 'borderWidth' => 1,
                 //'minBarLength' => 50,
-                'barPercentage' => 0.8
+                'barPercentage' => 0.9
             ])
-            ->backgroundcolor($color);
+            ->backgroundcolor('rgba(255, 99, 132, 0.6)');
     }
 
 }
