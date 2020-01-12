@@ -22,7 +22,7 @@ class QueriesTimeChart extends Chart
             'maintainAspectRatio' => false,
             'title' => [
                 'display' => true,
-                'text' => ['Average: ' . round(collect($this->getValues())->average()) . 'ms'],
+                'text' => ['Average: ' . round(collect($this->getValues())->pluck('y')->average()) . 'ms'],
             ],
             'legend' => false,
             'scales' => [
