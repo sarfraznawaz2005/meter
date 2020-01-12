@@ -7,6 +7,11 @@ use Sarfraznawaz2005\Meter\Models\MeterModel;
 
 abstract class Chart extends BaseChart
 {
+    const COLOR_RED = '255, 99, 132';
+    const COLOR_BLUE = '0, 123, 255';
+    const COLOR_GREEN = '40, 167, 69';
+    const COLOR_YELLOW = '255, 193, 7';
+
     protected $data = [];
 
     /**

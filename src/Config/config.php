@@ -69,7 +69,7 @@ return [
         Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class => [
             'enabled' => env('METER_QUERY_MONITOR', true),
             'ignore_packages' => true,
-            'slow' => 300, // considered slow if equal or over given time in ms
+            'slow' => 500, // considered slow if equal or over given time in ms
             'graph_type' => env('METER_QUERY_GRAPH_TYPE', 'bar'), // bar, line
         ],
 

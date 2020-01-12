@@ -37,6 +37,34 @@
 <script src="{{ asset('vendor/meter/Chart.min.js') }}"></script>
 <script src="{{ asset('vendor/meter/meter.js') }}"></script>
 
+<script>
+    Chart.pluginService.register({
+        beforeUpdate: chartInstance => {
+            chartInstance.data.datasets.forEach(dataset => {
+                dataset.backgroundColor = dataset.data.map(data => {
+                    if (typeof dataset.backgroundColor === "function") {
+                        return dataset.backgroundColor.call(this, data);
+                    }
+                    return dataset.backgroundColor;
+                });
+            });
+        }
+    });
+
+    Chart.pluginService.register({
+        beforeUpdate: chartInstance => {
+            chartInstance.data.datasets.forEach(dataset => {
+                dataset.borderColor = dataset.data.map(data => {
+                    if (typeof dataset.borderColor === "function") {
+                        return dataset.borderColor.call(this, data);
+                    }
+                    return dataset.borderColor;
+                });
+            });
+        }
+    });
+</script>
+
 @stack('js')
 
 </body>

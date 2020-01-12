@@ -111,7 +111,7 @@ class RequestTimeChart extends Chart
         $type = config('meter.monitors.' . RequestMonitor::class . '.graph_type', 'bar');
 
         $this->dataset('Response Time', $type, $this->getValues())
-            ->color('rgb(255, 99, 132)')
+            ->color('rgb(' . static::COLOR_RED . ')')
             ->options([
                 'pointRadius' => 2,
                 'fill' => true,
@@ -120,7 +120,7 @@ class RequestTimeChart extends Chart
                 //'minBarLength' => 50,
                 'barPercentage' => 0.9
             ])
-            ->backgroundcolor('rgba(255, 99, 132, 0.6)');
+            ->backgroundcolor('rgba(' . static::COLOR_RED . ', 0.6)');
     }
 
 }
