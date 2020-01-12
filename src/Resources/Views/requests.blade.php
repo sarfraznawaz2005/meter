@@ -20,13 +20,8 @@
             <div class="section">
                 @include('meter::layout.filters', ['route' => 'meter_requests'])
 
-                <div class="text-center text-primary"><strong>All Response Times</strong></div>
+                <div class="text-center text-primary"><strong>Response Times</strong></div>
                 <div>{!! $timeChart->container() !!}</div>
-            </div>
-
-            <div class="section">
-                <div class="text-center text-primary"><strong>Slow Responses Times</strong></div>
-                <div>{!! $requestSlowChart->container() !!}</div>
             </div>
 
             <div class="section">
@@ -64,7 +59,6 @@
 @push('js')
 
     {!! $timeChart->script() !!}
-    {!! $requestSlowChart->script() !!}
     {!! $memoryChart->script() !!}
 
     <script>

@@ -57,6 +57,7 @@ class CommandsTable extends Table
             $data['Happened'] = meterWithHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
             $data['Command'] = $row['content']['command'];
+            $data['Time'] = $row['content']['time'] . ' ms';
             $data['Exit Code'] = meterAutoBadge($row['content']['exit_code'], [
                 'success' => $row['content']['exit_code'] === 0,
                 'warning' => $row['content']['exit_code'] !== 0,

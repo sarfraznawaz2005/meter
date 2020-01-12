@@ -96,10 +96,10 @@ return [
         ],
     ],
 
-    // Graph/Table filters. "All" will be added automatically.
+    // Graph/Table filters. Will be added between "Today" and "All".
     'filters' => [
-        'Today' => 1,
-        '7 Day' => 7,
+        'Yesterday' => 1,
+        'Week' => 7,
         '1 Month' => 30,
         '3 Month' => 90,
         '6 Month' => 180,

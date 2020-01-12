@@ -36,8 +36,8 @@
                         <tr>
                             <th>Happened</th>
                             <th>Command</th>
-                            <th>Description</th>
                             <th>Expression</th>
+                            <th>Time</th>
                             <th>More</th>
                         </tr>
                         </thead>
@@ -58,8 +58,8 @@
         meterTable('.table', '{{ route('meter_schedules_table') }}', 25, [
             {data: 'Happened'},
             {data: 'Command'},
-            {data: 'Description'},
             {data: 'Expression'},
+            {data: 'Time'},
             {data: 'More'},
         ], {
             "columnDefs": [

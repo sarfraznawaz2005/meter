@@ -57,6 +57,7 @@ class EventsTable extends Table
             $data['Happened'] = meterWithHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
             $data['Event'] = $row['content']['name'];
+            $data['Time'] = $row['content']['time'] . ' ms';
             $data['Listeners'] = count($row['content']['listeners']);
 
             // additional for details button

@@ -36,6 +36,7 @@
                         <tr>
                             <th>Happened</th>
                             <th>Event</th>
+                            <th>Time</th>
                             <th>Listeners</th>
                             <th>More</th>
                         </tr>
@@ -57,6 +58,7 @@
         meterTable('.table', '{{ route('meter_events_table') }}', 25, [
             {data: 'Happened'},
             {data: 'Event'},
+            {data: 'Time'},
             {data: 'Listeners'},
             {data: 'More'}
         ], {

@@ -6,10 +6,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Charts\CommandsTimeChart;
 use Sarfraznawaz2005\Meter\Charts\EventsTimeChart;
-use Sarfraznawaz2005\Meter\Charts\Query\QueriesSlowChart;
-use Sarfraznawaz2005\Meter\Charts\Query\QueriesTimeChart;
+use Sarfraznawaz2005\Meter\Charts\QueriesTimeChart;
 use Sarfraznawaz2005\Meter\Charts\Request\RequestMemoryChart;
-use Sarfraznawaz2005\Meter\Charts\Request\RequestSlowChart;
 use Sarfraznawaz2005\Meter\Charts\Request\RequestTimeChart;
 use Sarfraznawaz2005\Meter\Charts\SchedulesTimeChart;
 
@@ -46,18 +44,17 @@ class PagesController extends Controller
         );
     }
 
-    public function queries(QueriesTimeChart $queriesTimeChart, QueriesSlowChart $queriesSlowChart)
+    public function queries(QueriesTimeChart $queriesTimeChart)
     {
-        return view('meter::queries', compact('queriesTimeChart', 'queriesSlowChart'));
+        return view('meter::queries', compact('queriesTimeChart'));
     }
 
     public function requests(
         RequestTimeChart $timeChart,
-        RequestSlowChart $requestSlowChart,
         RequestMemoryChart $memoryChart
     )
     {
-        return view('meter::requests', compact('timeChart', 'requestSlowChart', 'memoryChart'));
+        return view('meter::requests', compact('timeChart', 'memoryChart'));
     }
 
     public function commands(CommandsTimeChart $chart)

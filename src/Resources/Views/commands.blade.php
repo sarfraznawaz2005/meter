@@ -36,6 +36,7 @@
                         <tr>
                             <th>Happened</th>
                             <th>Command</th>
+                            <th>Time</th>
                             <th>Exit Code</th>
                             <th>More</th>
                         </tr>
@@ -57,6 +58,7 @@
         meterTable('.table', '{{ route('meter_commands_table') }}', 25, [
             {data: 'Happened'},
             {data: 'Command'},
+            {data: 'Time'},
             {data: 'Exit Code'},
             {data: 'More'},
         ], {

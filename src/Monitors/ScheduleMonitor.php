@@ -23,8 +23,6 @@ class ScheduleMonitor extends Monitor
      */
     public function register($app)
     {
-        $this->startTime = microtime(true);
-
         return $app->events->listen(CommandStarting::class, [$this, 'collect']);
     }
 
@@ -38,6 +36,8 @@ class ScheduleMonitor extends Monitor
         if (($event->command !== 'schedule:run' && $event->command !== 'schedule:finish') || !Meter::isMonitoring()) {
             return;
         }
+
+        $this->startTime = microtime(true);
 
         collect(app(Schedule::class)->events())->each(function ($event) {
             $event->then(function () use ($event) {

@@ -57,10 +57,11 @@ class SchedulesTable extends Table
             $data['Happened'] = meterWithHtmlTitle(Carbon::parse($row['created_at'])->diffForHumans(), $row['created_at']);
 
             $data['Command'] = $row['content']['command'];
-            $data['Description'] = $row['content']['description'];
             $data['Expression'] = meterBadge($row['content']['expression']);
+            $data['Time'] = $row['content']['time'] . ' ms';
 
             // additional for details button
+            $details['Description'] = $row['content']['description'];
             $details['Timezone'] = $row['content']['timezone'];
             $details['User'] = $row['content']['user'];
             $details['Output'] = $row['content']['output'] ? '<pre>' . $row['content']['output'] . '</pre>' : 'null';

@@ -1,5 +1,11 @@
 <div class="btn-group d-flex align-items-center justify-content-center filters">
 
+    <a
+        class="btn btn-sm btnfilter {{(request()->has('days') || request()->has('slow') || request()->has('all')) ? 'btn-outline-primary' : 'btn-primary'}}"
+        href="{{route($route)}}">
+        Today
+    </a>
+
     @foreach(config('meter.filters', []) as $name => $days)
         <a
             class="btn btn-sm btnfilter {{(request()->has('days') && request()->days == $days) ? 'btn-primary' : 'btn-outline-primary'}}"
