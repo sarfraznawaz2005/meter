@@ -75,15 +75,15 @@
 
     @include('meter::layout.filters', ['route' => 'meter_home'])
 
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap w-100">
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.enabled', true))
-            <div class="w-50">
+            <div class="col-md-6 col-lg-6 col-sm-12">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Response Times</strong></div>
                     <div>{!! $requestTimeChart->container() !!}</div>
                 </div>
             </div>
-            <div class="w-50">
+            <div class="col-md-6 col-lg-6 col-sm-12">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Request Memory Usage</strong></div>
                     <div>{!! $memoryChart->container() !!}</div>
@@ -92,7 +92,7 @@
         @endif
 
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.enabled', true))
-            <div class="w-50">
+            <div class="col-md-6 col-lg-6 col-sm-12">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Query Times</strong></div>
                     <div>{!! $queriesTimeChart->container() !!}</div>
@@ -101,7 +101,7 @@
         @endif
 
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.enabled', true))
-            <div class="w-50">
+            <div class="col-md-6 col-lg-6 col-sm-12">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Command Times</strong></div>
                     <div>{!! $commandsTimeChart->container() !!}</div>
@@ -110,7 +110,7 @@
         @endif
 
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
-            <div class="w-50">
+            <div class="col-md-6 col-lg-6 col-sm-12">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Event Times</strong></div>
                     <div>{!! $eventsTimeChart->container() !!}</div>
@@ -119,7 +119,7 @@
         @endif
 
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.enabled', true))
-            <div class="w-50">
+            <div class="col-md-6 col-lg-6 col-sm-12">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Schedule Times</strong></div>
                     <div>{!! $schedulesTimeChart->container() !!}</div>
