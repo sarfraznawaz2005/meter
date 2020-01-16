@@ -73,8 +73,6 @@
         </div>
     </div>
 
-    @include('meter::layout.filters', ['route' => 'meter_home'])
-
     <div class="d-flex flex-wrap w-100">
         @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.enabled', true))
             <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">

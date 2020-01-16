@@ -22,7 +22,6 @@ class CreateMeterEntriesTable extends Migration
 
             $table->index(['type']);
             $table->index(['created_at']);
-            $table->index(['type', 'created_at']);
         });
     }
 

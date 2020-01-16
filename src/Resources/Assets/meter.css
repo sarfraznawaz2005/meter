@@ -6,6 +6,10 @@ body, .wrapper {
     border-radius: unset !important;
 }
 
+.wrapper {
+    margin-top: 4rem;
+}
+
 .logo {
     font-size: 25px;
 }

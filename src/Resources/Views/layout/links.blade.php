@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 
     <span class="navbar-brand">
         <strong class="logo fa fa-dashboard"></strong>
@@ -12,7 +12,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav w-100">
 
             <li class="nav-item">
                 <a
@@ -71,6 +71,13 @@
                     </a>
                 </li>
             @endif
+
+            <li class="nav-item dropdown ml-auto">
+                <a class="nav-link dropdown-toggle filter_name" href="#" data-toggle="dropdown">Today </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    @include('meter::layout.filters', ['route' => request()->route()->getName()])
+                </div>
+            </li>
 
         </ul>
     </div>

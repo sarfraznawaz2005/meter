@@ -19,8 +19,6 @@
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
             <div class="section">
-                @include('meter::layout.filters', ['route' => 'meter_events'])
-
                 <div class="text-center text-primary"><strong>Event Times</strong></div>
                 <div>{!! $chart->container() !!}</div>
             </div>
@@ -28,21 +26,17 @@
 
         <div class="tab-pane fade" role="tabpanel" id="index">
             <div class="section">
-                @include('meter::layout.filters', ['route' => 'meter_events'])
-
-                <div class="table-responsive-sm">
-                    <table class="meter_table table table-hover mx-auto w-100">
-                        <thead>
-                        <tr>
-                            <th>Happened</th>
-                            <th>Event</th>
-                            <th>Time</th>
-                            <th>Listeners</th>
-                            <th>More</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
+                <table class="table-responsive-sm meter_table table table-hover mx-auto w-100">
+                    <thead>
+                    <tr>
+                        <th>Happened</th>
+                        <th>Event</th>
+                        <th>Time</th>
+                        <th>Listeners</th>
+                        <th>More</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>

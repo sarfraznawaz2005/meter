@@ -18,8 +18,6 @@
     <div class="tab-content">
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
             <div class="section">
-                @include('meter::layout.filters', ['route' => 'meter_requests'])
-
                 <div class="text-center text-primary"><strong>Response Times</strong></div>
                 <div>{!! $timeChart->container() !!}</div>
             </div>
@@ -32,24 +30,20 @@
 
         <div class="tab-pane fade" role="tabpanel" id="index">
             <div class="section">
-                @include('meter::layout.filters', ['route' => 'meter_requests'])
-
-                <div class="table-responsive-sm">
-                    <table class="meter_table table table-hover mx-auto w-100">
-                        <thead>
-                        <tr>
-                            <th>Happened</th>
-                            <th>Verb</th>
-                            <th>Path</th>
-                            <th>Status</th>
-                            <th>Time</th>
-                            <th>Memory</th>
-                            <th>Slow</th>
-                            <th>More</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
+                <table class="table-responsive-sm meter_table table table-hover mx-auto w-100">
+                    <thead>
+                    <tr>
+                        <th>Happened</th>
+                        <th>Verb</th>
+                        <th>Path</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                        <th>Memory</th>
+                        <th>Slow</th>
+                        <th>More</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
