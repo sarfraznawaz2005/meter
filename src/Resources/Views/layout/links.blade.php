@@ -72,6 +72,21 @@
                 </li>
             @endif
 
+            @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CpuMonitor::class . '.enabled', true) ||
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\DiskSpaceMonitor::class . '.enabled', true) ||
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\MemoryMonitor::class . '.enabled', true) ||
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\HttpConnectionsMonitor::class . '.enabled', true)
+            )
+                <li class="nav-item">
+                    <a
+                        class="btn btn-light {{meterActiveLink('meter_server_stats') ? 'active' : ''}}"
+                        href="{{route('meter_server_stats')}}">
+                        Server
+                    </a>
+                </li>
+            @endif
+
             <li class="nav-item dropdown ml-auto">
                 <a class="nav-link dropdown-toggle filter_name" href="#" data-toggle="dropdown">Today </a>
                 <div class="dropdown-menu dropdown-menu-right">

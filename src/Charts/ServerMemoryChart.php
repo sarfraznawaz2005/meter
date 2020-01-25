@@ -1,14 +1,12 @@
 <?php
 
-namespace Sarfraznawaz2005\Meter\Charts\Request;
+namespace Sarfraznawaz2005\Meter\Charts;
 
-use Balping\JsonRaw\Raw;
-use Sarfraznawaz2005\Meter\Charts\Chart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
-use Sarfraznawaz2005\Meter\Monitors\RequestMonitor;
+use Sarfraznawaz2005\Meter\Monitors\MemoryMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
-class RequestMemoryChart extends Chart
+class ServerMemoryChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -23,9 +21,9 @@ class RequestMemoryChart extends Chart
             'title' => [
                 'display' => true,
                 'text' => [
-                    'Min ' . round(collect($this->getValues())->pluck('y')->min()) . ' | ' .
-                    'Avg ' . round(collect($this->getValues())->pluck('y')->average()) . ' | ' .
-                    'Max ' . round(collect($this->getValues())->pluck('y')->max())
+                    'Min ' . round(collect($this->getValues())->min()) . ' | ' .
+                    'Avg ' . round(collect($this->getValues())->average()) . ' | ' .
+                    'Max ' . round(collect($this->getValues())->max())
                 ],
             ],
             'legend' => false,
@@ -34,17 +32,9 @@ class RequestMemoryChart extends Chart
                     'ticks' => [
                         'beginAtZero' => true
                     ],
-                    'scaleLabel' => [
-                        'display' => true,
-                        'labelString' => 'Memory (MB)'
-                    ]
                 ]],
                 'xAxes' => [[
                     'display' => false,
-                    //'type' => 'time',
-                    'time' => [
-                        'displayFormats' => ['hour' => 'MMM D hA'],
-                    ],
                     'ticks' => [
                         'beginAtZero' => true,
                         'autoSkip' => true,
@@ -54,11 +44,6 @@ class RequestMemoryChart extends Chart
                     'gridLines' => ['offsetGridLines' => true],
                     'offset' => true,
                 ]]
-            ],
-            'tooltips' => [
-                'callbacks' => [
-                    'label' => new Raw('function(item, data) { return "Memory: " + data.datasets[item.datasetIndex].data[item.index].y + " (Path: " + data.datasets[item.datasetIndex].data[item.index].x + ")"}')
-                ]
             ],
         ], true);
     }
@@ -71,13 +56,8 @@ class RequestMemoryChart extends Chart
      */
     protected function setData(MeterModel $model)
     {
-        foreach ($model->type(Type::REQUEST)->filtered()->orderBy('id', 'asc')->get() as $item) {
-            if (isset($item->content['memory'])) {
-                $this->data[(string)$item->created_at] = [
-                    'x' => $item->content['uri'],
-                    'y' => $item->content['memory'],
-                ];
-            }
+        foreach ($model->type(Type::MEMORY)->filtered()->orderBy('id', 'asc')->get() as $item) {
+            $this->data[(string)$item->created_at] = $item->content['percent'];
         }
     }
 
@@ -108,9 +88,9 @@ class RequestMemoryChart extends Chart
      */
     protected function setDataSet()
     {
-        $type = config('meter.monitors.' . RequestMonitor::class . '.graph_type', 'bar');
+        $type = config('meter.monitors.' . MemoryMonitor::class . '.graph_type', 'bar');
 
-        $this->dataset('Memory', $type, $this->getValues())
+        $this->dataset('Percent', $type, $this->getValues())
             ->color('rgb(' . static::COLOR_RED . ')')
             ->options([
                 'pointRadius' => 2,

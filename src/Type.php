@@ -9,4 +9,8 @@ final class Type
     const COMMAND = 'command';
     const EVENT = 'event';
     const SCHEDULE = 'schedule';
+    const CPU = 'cpu';
+    const DISK = 'disk';
+    const MEMORY = 'memory';
+    const CONNECTIONS = 'connections';
 }

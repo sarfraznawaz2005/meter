@@ -5,22 +5,30 @@ namespace Sarfraznawaz2005\Meter\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\Meter\Charts\CommandsTimeChart;
+use Sarfraznawaz2005\Meter\Charts\ConnectionsChart;
+use Sarfraznawaz2005\Meter\Charts\CpuChart;
+use Sarfraznawaz2005\Meter\Charts\DiskSpaceChart;
 use Sarfraznawaz2005\Meter\Charts\EventsTimeChart;
 use Sarfraznawaz2005\Meter\Charts\QueriesTimeChart;
-use Sarfraznawaz2005\Meter\Charts\Request\RequestMemoryChart;
-use Sarfraznawaz2005\Meter\Charts\Request\RequestTimeChart;
+use Sarfraznawaz2005\Meter\Charts\RequestMemoryChart;
+use Sarfraznawaz2005\Meter\Charts\RequestTimeChart;
 use Sarfraznawaz2005\Meter\Charts\SchedulesTimeChart;
+use Sarfraznawaz2005\Meter\Charts\ServerMemoryChart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 
 class PagesController extends Controller
 {
     public function home(
         RequestTimeChart $requestTimeChart,
-        RequestMemoryChart $memoryChart,
+        RequestMemoryChart $requestMemoryChart,
         QueriesTimeChart $queriesTimeChart,
         CommandsTimeChart $commandsTimeChart,
         EventsTimeChart $eventsTimeChart,
-        SchedulesTimeChart $schedulesTimeChart
+        SchedulesTimeChart $schedulesTimeChart,
+        CpuChart $cpuChart,
+        DiskSpaceChart $diskSpaceChart,
+        ServerMemoryChart $serverMemoryChart,
+        ConnectionsChart $connectionsChart
     )
     {
         $totals = MeterModel::select(
@@ -36,11 +44,15 @@ class PagesController extends Controller
             'meter::dashboard', compact(
                 'totals',
                 'requestTimeChart',
-                'memoryChart',
+                'requestMemoryChart',
                 'queriesTimeChart',
                 'commandsTimeChart',
                 'eventsTimeChart',
-                'schedulesTimeChart'
+                'schedulesTimeChart',
+                'cpuChart',
+                'diskSpaceChart',
+                'serverMemoryChart',
+                'connectionsChart'
             )
         );
     }
@@ -71,5 +83,15 @@ class PagesController extends Controller
     public function schedules(SchedulesTimeChart $chart)
     {
         return view('meter::schedules', compact('chart'));
+    }
+
+    public function serverStats(
+        CpuChart $cpuChart,
+        DiskSpaceChart $diskSpaceChart,
+        ServerMemoryChart $serverMemoryChart,
+        ConnectionsChart $connectionsChart
+    )
+    {
+        return view('meter::server', compact('cpuChart', 'diskSpaceChart', 'serverMemoryChart', 'connectionsChart'));
     }
 }

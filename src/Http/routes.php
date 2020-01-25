@@ -9,6 +9,7 @@ Route::get('queries', 'PagesController@queries')->name('meter_queries');
 Route::get('commands', 'PagesController@commands')->name('meter_commands');
 Route::get('events', 'PagesController@events')->name('meter_events');
 Route::get('schedules', 'PagesController@schedules')->name('meter_schedules');
+Route::get('server_stats', 'PagesController@serverStats')->name('meter_server_stats');
 
 // tables
 Route::get('requests_table', 'TablesController@requestsTable')->name('meter_requests_table');

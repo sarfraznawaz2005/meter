@@ -74,7 +74,11 @@
     </div>
 
     <div class="d-flex flex-wrap w-100">
-        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.enabled', true))
+
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.show_on_dashboard', true)
+        )
             <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Response Times</strong></div>
@@ -84,56 +88,145 @@
             <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Request Memory Usage</strong></div>
-                    <div>{!! $memoryChart->container() !!}</div>
+                    <div>{!! $requestMemoryChart->container() !!}</div>
                 </div>
             </div>
+
+            @push('js')
+                {!! $requestTimeChart->script() !!}
+                {!! $requestMemoryChart->script() !!}
+            @endpush
         @endif
 
-        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.enabled', true))
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class . '.show_on_dashboard', true)
+        )
             <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Query Times</strong></div>
                     <div>{!! $queriesTimeChart->container() !!}</div>
                 </div>
             </div>
+
+            @push('js')
+                {!! $queriesTimeChart->script() !!}
+            @endpush
         @endif
 
-        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.enabled', true))
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class . '.show_on_dashboard', true)
+        )
             <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Command Times</strong></div>
                     <div>{!! $commandsTimeChart->container() !!}</div>
                 </div>
             </div>
+
+            @push('js')
+                {!! $commandsTimeChart->script() !!}
+            @endpush
         @endif
 
-        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true))
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\EventMonitor::class . '.show_on_dashboard', true)
+        )
             <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Event Times</strong></div>
                     <div>{!! $eventsTimeChart->container() !!}</div>
                 </div>
             </div>
+
+            @push('js')
+                {!! $eventsTimeChart->script() !!}
+            @endpush
         @endif
 
-        @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.enabled', true))
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class . '.show_on_dashboard', true)
+        )
             <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
                 <div class="section">
                     <div class="text-center text-primary"><strong>Schedule Times</strong></div>
                     <div>{!! $schedulesTimeChart->container() !!}</div>
                 </div>
             </div>
+
+            @push('js')
+                {!! $schedulesTimeChart->script() !!}
+            @endpush
         @endif
+
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CpuMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\CpuMonitor::class . '.show_on_dashboard', true)
+        )
+            <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
+                <div class="section">
+                    <div class="text-center text-primary"><strong>Server CPU Usage</strong></div>
+                    <div>{!! $cpuChart->container() !!}</div>
+                </div>
+            </div>
+
+            @push('js')
+                {!! $cpuChart->script() !!}
+            @endpush
+        @endif
+
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\DiskSpaceMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\DiskSpaceMonitor::class . '.show_on_dashboard', true)
+        )
+            <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
+                <div class="section">
+                    <div class="text-center text-primary"><strong>Server Disk Space Usage</strong></div>
+                    <div>{!! $diskSpaceChart->container() !!}</div>
+                </div>
+            </div>
+
+            @push('js')
+                {!! $diskSpaceChart->script() !!}
+            @endpush
+        @endif
+
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\MemoryMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\MemoryMonitor::class . '.show_on_dashboard', true)
+        )
+            <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
+                <div class="section">
+                    <div class="text-center text-primary"><strong>Server Memory Usage</strong></div>
+                    <div>{!! $serverMemoryChart->container() !!}</div>
+                </div>
+            </div>
+
+            @push('js')
+                {!! $serverMemoryChart->script() !!}
+            @endpush
+        @endif
+
+        @if (
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\HttpConnectionsMonitor::class . '.enabled', true) &&
+            config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\HttpConnectionsMonitor::class . '.show_on_dashboard', true)
+        )
+            <div class="col-md-6 col-lg-6 col-sm-12 p-0 border-0">
+                <div class="section">
+                    <div class="text-center text-primary"><strong>Server HTTP Connections Count</strong></div>
+                    <div>{!! $connectionsChart->container() !!}</div>
+                </div>
+            </div>
+
+            @push('js')
+                {!! $connectionsChart->script() !!}
+            @endpush
+        @endif
+
     </div>
 
 
 @endsection
-
-@push('js')
-    {!! $requestTimeChart->script() !!}
-    {!! $memoryChart->script() !!}
-    {!! $queriesTimeChart->script() !!}
-    {!! $commandsTimeChart->script() !!}
-    {!! $eventsTimeChart->script() !!}
-    {!! $schedulesTimeChart->script() !!}
-@endpush

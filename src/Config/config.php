@@ -64,6 +64,7 @@ return [
             'enabled' => env('METER_REQUEST_MONITOR', true),
             'slow' => 3000, // considered slow if equal or over given time in ms
             'graph_type' => env('METER_REQUEST_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_REQUEST_ON_DASHBOARD', true)
         ],
 
         Sarfraznawaz2005\Meter\Monitors\QueryMonitor::class => [
@@ -71,23 +72,59 @@ return [
             'ignore_packages' => true,
             'slow' => 500, // considered slow if equal or over given time in ms
             'graph_type' => env('METER_QUERY_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_QUERY_ON_DASHBOARD', true)
         ],
 
         Sarfraznawaz2005\Meter\Monitors\CommandMonitor::class => [
             'enabled' => env('METER_COMMAND_MONITOR', true),
             'ignore' => [],
             'graph_type' => env('METER_COMMAND_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_COMMAND_ON_DASHBOARD', true)
         ],
 
         Sarfraznawaz2005\Meter\Monitors\EventMonitor::class => [
             'enabled' => env('METER_EVENT_MONITOR', true),
             'ignore' => [],
             'graph_type' => env('METER_EVENT_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_EVENT_ON_DASHBOARD', true)
         ],
 
         Sarfraznawaz2005\Meter\Monitors\ScheduleMonitor::class => [
             'enabled' => env('METER_SCHEDULE_MONITOR', true),
             'graph_type' => env('METER_SCHEDULE_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_SCHEDULE_ON_DASHBOARD', true)
+        ],
+
+        #####################################################################
+        # below monitors are run via "meter:servermonitor" if enabled
+        #####################################################################
+
+        // monitors average CPU usage
+        Sarfraznawaz2005\Meter\Monitors\CpuMonitor::class => [
+            'enabled' => env('METER_CPU_MONITOR', true),
+            'graph_type' => env('METER_CPU_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_CPU_ON_DASHBOARD', true)
+        ],
+
+        // monitors disk space usage
+        Sarfraznawaz2005\Meter\Monitors\DiskSpaceMonitor::class => [
+            'enabled' => env('METER_DISK_MONITOR', true),
+            'graph_type' => env('METER_DISK_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_DISK_ON_DASHBOARD', true)
+        ],
+
+        // monitors server memory usage
+        Sarfraznawaz2005\Meter\Monitors\MemoryMonitor::class => [
+            'enabled' => env('METER_MEMORY_MONITOR', true),
+            'graph_type' => env('METER_MEMORY_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_MEMOR_ON_DASHBOARD', true)
+        ],
+
+        // monitors active http connections count on port 80
+        Sarfraznawaz2005\Meter\Monitors\HttpConnectionsMonitor::class => [
+            'enabled' => env('METER_HTTP_CONNECTIONS_MONITOR', true),
+            'graph_type' => env('METER_HTTP_CONNECTIONS_GRAPH_TYPE', 'bar'), // bar, line
+            'show_on_dashboard' => env('METER_HTTP_CONNECTIONS_ON_DASHBOARD', true)
         ],
     ],
 

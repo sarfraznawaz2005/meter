@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sarfraznawaz2005\Meter\Console\PruneCommand;
 use Sarfraznawaz2005\Meter\Console\PublishCommand;
+use Sarfraznawaz2005\Meter\Console\ServerMonitorCommand;
 
 class MeterServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,7 @@ class MeterServiceProvider extends ServiceProvider
         $this->commands([
             PruneCommand::class,
             PublishCommand::class,
+            ServerMonitorCommand::class,
         ]);
 
         $this->app->singleton('meter', static function () {

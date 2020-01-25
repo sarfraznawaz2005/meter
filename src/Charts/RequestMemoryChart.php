@@ -1,14 +1,13 @@
 <?php
 
-namespace Sarfraznawaz2005\Meter\Charts\Request;
+namespace Sarfraznawaz2005\Meter\Charts;
 
 use Balping\JsonRaw\Raw;
-use Sarfraznawaz2005\Meter\Charts\Chart;
 use Sarfraznawaz2005\Meter\Models\MeterModel;
 use Sarfraznawaz2005\Meter\Monitors\RequestMonitor;
 use Sarfraznawaz2005\Meter\Type;
 
-class RequestTimeChart extends Chart
+class RequestMemoryChart extends Chart
 {
     /**
      * Sets options for chart.
@@ -36,7 +35,7 @@ class RequestTimeChart extends Chart
                     ],
                     'scaleLabel' => [
                         'display' => true,
-                        'labelString' => 'Response Time (ms)'
+                        'labelString' => 'Memory (MB)'
                     ]
                 ]],
                 'xAxes' => [[
@@ -57,7 +56,7 @@ class RequestTimeChart extends Chart
             ],
             'tooltips' => [
                 'callbacks' => [
-                    'label' => new Raw('function(item, data) { return "Time: " + data.datasets[item.datasetIndex].data[item.index].y + " (Path: " + data.datasets[item.datasetIndex].data[item.index].x + ")"}')
+                    'label' => new Raw('function(item, data) { return "Memory: " + data.datasets[item.datasetIndex].data[item.index].y + " (Path: " + data.datasets[item.datasetIndex].data[item.index].x + ")"}')
                 ]
             ],
         ], true);
@@ -72,10 +71,10 @@ class RequestTimeChart extends Chart
     protected function setData(MeterModel $model)
     {
         foreach ($model->type(Type::REQUEST)->filtered()->orderBy('id', 'asc')->get() as $item) {
-            if (isset($item->content['duration'])) {
+            if (isset($item->content['memory'])) {
                 $this->data[(string)$item->created_at] = [
                     'x' => $item->content['uri'],
-                    'y' => $item->content['duration'],
+                    'y' => $item->content['memory'],
                 ];
             }
         }
@@ -110,7 +109,7 @@ class RequestTimeChart extends Chart
     {
         $type = config('meter.monitors.' . RequestMonitor::class . '.graph_type', 'bar');
 
-        $this->dataset('Response Time', $type, $this->getValues())
+        $this->dataset('Memory', $type, $this->getValues())
             ->color('rgb(' . static::COLOR_RED . ')')
             ->options([
                 'pointRadius' => 2,
