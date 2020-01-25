@@ -10,6 +10,7 @@ use Sarfraznawaz2005\Meter\Charts\QueriesTimeChart;
 use Sarfraznawaz2005\Meter\Charts\Request\RequestMemoryChart;
 use Sarfraznawaz2005\Meter\Charts\Request\RequestTimeChart;
 use Sarfraznawaz2005\Meter\Charts\SchedulesTimeChart;
+use Sarfraznawaz2005\Meter\Models\MeterModel;
 
 class PagesController extends Controller
 {
@@ -22,14 +23,14 @@ class PagesController extends Controller
         SchedulesTimeChart $schedulesTimeChart
     )
     {
-        $totals = DB::table('meter_entries')
-            ->selectRaw('count(*) as total')
-            ->selectRaw("count(case when type = 'command' then 1 end) as commands")
-            ->selectRaw("count(case when type = 'event' then 1 end) as events")
-            ->selectRaw("count(case when type = 'query' then 1 end) as queries")
-            ->selectRaw("count(case when type = 'request' then 1 end) as requests")
-            ->selectRaw("count(case when type = 'schedule' then 1 end) as schedules")
-            ->first();
+        $totals = MeterModel::select(
+            DB::raw('count(*) as total'),
+            DB::raw("count(case when type = 'command' then 1 end) as commands"),
+            DB::raw("count(case when type = 'event' then 1 end) as events"),
+            DB::raw("count(case when type = 'query' then 1 end) as queries"),
+            DB::raw("count(case when type = 'request' then 1 end) as requests"),
+            DB::raw("count(case when type = 'schedule' then 1 end) as schedules")
+        )->filtered()->first();
 
         return view(
             'meter::dashboard', compact(

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="section p-0">
-        <div class="card-group totals">
+        <div class="shadow card-group totals">
 
             @if (config('meter.monitors.' . Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class . '.enabled', true))
                 <div class="card text-center text-white bg-primary border-primary">
