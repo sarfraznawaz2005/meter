@@ -16,48 +16,17 @@
     </ul>
 
     <div class="tab-content">
-
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
             @component('meter::components.chart', ['chart' => $chart, 'title' => 'Schedule Times'])@endcomponent
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
-            <div class="section">
-                <table class="table-responsive-sm meter_table table table-hover mx-auto w-100">
-                    <thead>
-                    <tr>
-                        <th>Happened</th>
-                        <th>Command</th>
-                        <th>Expression</th>
-                        <th>Time</th>
-                        <th>More</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
+            @component('meter::components.table',[
+                'url' => route('meter_schedules_table'),
+                'columns' => ['Happened', 'Command', 'Expression', 'Time', 'More']
+            ])
+            @endcomponent
         </div>
     </div>
 
 @endsection
-
-@push('js')
-    <script>
-
-        meterTable('.table', '{{ route('meter_schedules_table') }}', 25, [
-            {data: 'Happened'},
-            {data: 'Command'},
-            {data: 'Expression'},
-            {data: 'Time'},
-            {data: 'More'},
-        ], {
-            "columnDefs": [
-                {"width": "10%", "targets": -1}
-            ]
-        }, {
-            {{request()->has('days') ? 'days : ' . request()->days : ''}}
-            {{request()->has('slow') ? 'slow : 1' : ''}}
-            {{request()->has('all') ? 'all : 1' : ''}}
-        });
-
-    </script>
-@endpush

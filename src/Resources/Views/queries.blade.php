@@ -22,46 +22,13 @@
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
-            <div class="section">
-                <table class="table-responsive-sm meter_table table table-hover mx-auto w-100">
-                    <thead>
-                    <tr>
-                        <th>Happened</th>
-                        <th>Query</th>
-                        <th>Time</th>
-                        <th>Slow</th>
-                        <th>More</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
+            @component('meter::components.table',[
+                'url' => route('meter_queries_table'),
+                'columns' => ['Happened', 'Query', 'Time', 'Slow', 'More'],
+                'columnDefs' => ['{"width": "10%", "targets": 0}', '{"width": "5%", "targets": -1}', '{"width": "10%", "targets": -2}', '{"width": "10%", "targets": -3}']
+            ])
+            @endcomponent
         </div>
     </div>
 
 @endsection
-
-@push('js')
-
-    <script>
-
-        meterTable('.table', '{{ route('meter_queries_table') }}', 25, [
-            {data: 'Happened'},
-            {data: 'Query'},
-            {data: 'Time'},
-            {data: 'Slow'},
-            {data: 'More'}
-        ], {
-            "columnDefs": [
-                {"width": "10%", "targets": 0},
-                {"width": "5%", "targets": -1},
-                {"width": "10%", "targets": -2},
-                {"width": "10%", "targets": -3}
-            ]
-        }, {
-            {{request()->has('days') ? 'days : ' . request()->days : ''}}
-            {{request()->has('slow') ? 'slow : 1' : ''}}
-            {{request()->has('all') ? 'all : 1' : ''}}
-        });
-
-    </script>
-@endpush

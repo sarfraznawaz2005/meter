@@ -22,42 +22,13 @@
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
-            <div class="section">
-                <table class="table-responsive-sm meter_table table table-hover mx-auto w-100">
-                    <thead>
-                    <tr>
-                        <th>Happened</th>
-                        <th>Event</th>
-                        <th>Time</th>
-                        <th>Listeners</th>
-                        <th>More</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
+            @component('meter::components.table',[
+                'url' => route('meter_events_table'),
+                'columns' => ['Happened', 'Event', 'Time', 'Listeners', 'More']
+            ])
+            @endcomponent
         </div>
     </div>
 
 @endsection
 
-@push('js')
-    <script>
-
-        meterTable('.table', '{{ route('meter_events_table') }}', 25, [
-            {data: 'Happened'},
-            {data: 'Event'},
-            {data: 'Time'},
-            {data: 'Listeners'},
-            {data: 'More'}
-        ], {
-            "columnDefs": [
-                {"width": "10%", "targets": -1}
-            ]
-        }, {
-            {{request()->has('days') ? 'days : ' . request()->days : ''}}
-            {{request()->has('slow') ? 'slow : 1' : ''}}
-            {{request()->has('all') ? 'all : 1' : ''}}
-        });
-
-    </script>
-@endpush
