@@ -2,15 +2,17 @@
 
 namespace Sarfraznawaz2005\Meter;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sarfraznawaz2005\Meter\Console\PruneCommand;
 use Sarfraznawaz2005\Meter\Console\PublishCommand;
 use Sarfraznawaz2005\Meter\Console\ServerMonitorCommand;
+use Sarfraznawaz2005\Meter\Http\Middleware\BasicAuth;
 
 class MeterServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(Router $router)
     {
         if (!config('meter.enabled')) {
             return;
@@ -18,7 +20,13 @@ class MeterServiceProvider extends ServiceProvider
 
         Meter::start($this->app);
 
-        Route::middlewareGroup('meter', array_merge(config('meter.middleware', []), ['web']));
+        if (method_exists($router, 'aliasMiddleware')) {
+            $router->aliasMiddleware('auth.basic_meter', BasicAuth::class);
+        } else {
+            $router->middleware('auth.basic_meter', BasicAuth::class);
+        }
+
+        Route::middlewareGroup('meter', array_merge(config('meter.middleware', []), ['web', 'auth.basic_meter']));
 
         $this->loadViewsFrom(__DIR__ . '/Resources/Views', 'meter');
 
