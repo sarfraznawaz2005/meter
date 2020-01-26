@@ -96,7 +96,7 @@ return [
         ],
 
         #####################################################################
-        # below monitors are run via "meter:servermonitor" if enabled
+        # below monitors are run via "meter:servermonitor" command if enabled
         #####################################################################
 
         // monitors average CPU usage
@@ -132,9 +132,9 @@ return [
     'filters' => [
         'Yesterday' => 1,
         'Week' => 7,
-        '1 Month' => 30,
+        'Month' => 30,
         '3 Month' => 90,
         '6 Month' => 180,
-        '1 Year' => 365,
+        'Year' => 365,
     ],
 ];

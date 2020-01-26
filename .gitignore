@@ -5,4 +5,3 @@ vendor
 coverage
 todo.txt
 push.sh
-phpunit.xml

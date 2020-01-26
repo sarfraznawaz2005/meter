@@ -64,6 +64,7 @@ class CommandMonitor extends Monitor
             'package:discover',
             'meter:prune',
             'meter:publish',
+            'meter:servermonitor',
         ]), true);
     }
 }
