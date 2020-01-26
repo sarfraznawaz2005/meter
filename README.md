@@ -100,7 +100,7 @@ If you discover any security related issues, please email sarfraznawaz2005@gmail
 
 ## License
 
-Please see the [license file](license.md) for more information.
+Please see the [license file](LICENSE.md) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/sarfraznawaz2005/meter.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/sarfraznawaz2005/meter.svg?style=flat-square
