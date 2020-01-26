@@ -29,7 +29,9 @@ class EventMonitor extends Monitor
     {
         $this->startTime = microtime(true);
 
-        return $app->events->listen('*', [$this, 'collect']);
+        return $app->events->listen('*', function ($eventName, $payload) {
+            $this->collect($eventName, $payload);
+        });
     }
 
     /**
