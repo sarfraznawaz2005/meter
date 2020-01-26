@@ -1,32 +1,9 @@
 @extends('meter::layout.layout')
 
 @section('content')
-
-    <div class="section">
-        <div class="text-center text-primary"><strong>Server CPU Usage</strong></div>
-        <div>{!! $cpuChart->container() !!}</div>
-    </div>
-
-    <div class="section">
-        <div class="text-center text-primary"><strong>Server Disk Space Usage</strong></div>
-        <div>{!! $diskSpaceChart->container() !!}</div>
-    </div>
-
-    <div class="section">
-        <div class="text-center text-primary"><strong>Server Memory Usage</strong></div>
-        <div>{!! $serverMemoryChart->container() !!}</div>
-    </div>
-
-    <div class="section">
-        <div class="text-center text-primary"><strong>Server HTTP Connections Count</strong></div>
-        <div>{!! $connectionsChart->container() !!}</div>
-    </div>
-
+    @component('meter::components.chart', ['chart' => $cpuChart, 'title' => 'Server CPU Usage'])@endcomponent
+    @component('meter::components.chart', ['chart' => $diskSpaceChart, 'title' => 'Server Disk Space Usage'])@endcomponent
+    @component('meter::components.chart', ['chart' => $serverMemoryChart, 'title' => 'Server Memory Usage'])@endcomponent
+    @component('meter::components.chart', ['chart' => $connectionsChart, 'title' => 'Server HTTP Connections Count'])@endcomponent
 @endsection
 
-@push('js')
-    {!! $cpuChart->script() !!}
-    {!! $diskSpaceChart->script() !!}
-    {!! $serverMemoryChart->script() !!}
-    {!! $connectionsChart->script() !!}
-@endpush

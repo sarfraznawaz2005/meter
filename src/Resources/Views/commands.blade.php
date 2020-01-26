@@ -18,10 +18,7 @@
     <div class="tab-content">
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
-            <div class="section">
-                <div class="text-center text-primary"><strong>Command Times</strong></div>
-                <div>{!! $chart->container() !!}</div>
-            </div>
+            @component('meter::components.chart', ['chart' => $chart, 'title' => 'Command Times'])@endcomponent
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
@@ -44,9 +41,6 @@
 @endsection
 
 @push('js')
-
-    {!! $chart->script() !!}
-
     <script>
 
         meterTable('.table', '{{ route('meter_commands_table') }}', 25, [

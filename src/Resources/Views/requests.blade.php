@@ -17,15 +17,8 @@
 
     <div class="tab-content">
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
-            <div class="section">
-                <div class="text-center text-primary"><strong>Response Times</strong></div>
-                <div>{!! $timeChart->container() !!}</div>
-            </div>
-
-            <div class="section">
-                <div class="text-center text-primary"><strong>Memory Usage</strong></div>
-                <div>{!! $memoryChart->container() !!}</div>
-            </div>
+            @component('meter::components.chart', ['chart' => $timeChart, 'title' => 'Response Times'])@endcomponent
+            @component('meter::components.chart', ['chart' => $memoryChart, 'title' => 'Memory Usage'])@endcomponent
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
@@ -51,10 +44,6 @@
 @endsection
 
 @push('js')
-
-    {!! $timeChart->script() !!}
-    {!! $memoryChart->script() !!}
-
     <script>
 
         meterTable('.table', '{{ route('meter_requests_table') }}', 25, [

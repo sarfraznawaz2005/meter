@@ -18,10 +18,7 @@
     <div class="tab-content">
 
         <div class="tab-pane fade show active" role="tabpanel" id="graph">
-            <div class="section">
-                <div class="text-center text-primary"><strong>Query Times</strong></div>
-                <div>{!! $queriesTimeChart->container() !!}</div>
-            </div>
+            @component('meter::components.chart', ['chart' => $queriesTimeChart, 'title' => 'Query Times'])@endcomponent
         </div>
 
         <div class="tab-pane fade" role="tabpanel" id="index">
@@ -44,8 +41,6 @@
 @endsection
 
 @push('js')
-
-    {!! $queriesTimeChart->script() !!}
 
     <script>
 
