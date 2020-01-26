@@ -14,6 +14,13 @@ class MeterServiceProvider extends ServiceProvider
 {
     public function boot(Router $router)
     {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([__DIR__ . '/Config/config.php' => config_path('meter.php')], 'meter-config');
+            $this->publishes([__DIR__ . '/Migrations' => database_path('migrations')], 'meter-migration');
+            $this->publishes([__DIR__ . '/Resources/Views' => resource_path('views/vendor/meter')], 'meter-views');
+            $this->publishes([__DIR__ . '/Resources/Assets' => public_path('vendor/meter')], 'meter-assets');
+        }
+
         if (!config('meter.enabled')) {
             return;
         }
@@ -40,13 +47,6 @@ class MeterServiceProvider extends ServiceProvider
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
         });
-
-        if ($this->app->runningInConsole()) {
-            $this->publishes([__DIR__ . '/Config/config.php' => config_path('meter.php')], 'meter-config');
-            $this->publishes([__DIR__ . '/Migrations' => database_path('migrations')], 'meter-migration');
-            $this->publishes([__DIR__ . '/Resources/Views' => resource_path('views/vendor/meter')], 'meter-views');
-            $this->publishes([__DIR__ . '/Resources/Assets' => public_path('vendor/meter')], 'meter-assets');
-        }
     }
 
     /**
