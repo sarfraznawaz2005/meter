@@ -74,6 +74,13 @@ protected function schedule(Schedule $schedule)
     $schedule->command('meter:servermonitor')->hourly(); // or daily
 }
 ```
+## Authentication ##
+
+You can use `username` and `password` config options to setup basic HTTP authentication for Meter interface to be accessed. Once setup, user should provide correct username and password to access Meter page(s).
+
+## Ignoring Things ##
+
+You can use `ignore_paths` and `ignore_commands` config options to ignore desired pages or commands from being monitored by Meter.
 
 ## Data Pruning ##
 
