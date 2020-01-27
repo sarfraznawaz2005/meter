@@ -3,7 +3,7 @@
 return [
 
     // Enable/Disable Meter
-    'enabled' => env('METER_ENABLED', true),
+    'enabled' => env('METER_ENABLED', false),
 
     #---------------------------------------------------------------------
 
