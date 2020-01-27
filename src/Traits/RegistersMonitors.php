@@ -3,6 +3,7 @@
 namespace Sarfraznawaz2005\Meter\Traits;
 
 use Illuminate\Contracts\Foundation\Application;
+use Sarfraznawaz2005\Meter\Console\ServerMonitorCommand;
 
 trait RegistersMonitors
 {
@@ -32,6 +33,8 @@ trait RegistersMonitors
      */
     protected static function registerMonitors($app)
     {
+        $serverMonitors = ServerMonitorCommand::$serverMonitors;
+
         foreach (config('meter.monitors') as $key => $monitor) {
 
             if (is_string($key) && $monitor === false) {
@@ -46,7 +49,15 @@ trait RegistersMonitors
                 'options' => is_array($monitor) ? $monitor : [],
             ]);
 
-            static::$monitors[] = get_class($monitor);
+            $class = get_class($monitor);
+
+            // exclude server monitors
+            if (in_array($class, $serverMonitors, true)) {
+                unset($monitor);
+                continue;
+            }
+
+            static::$monitors[] = $class;
 
             $monitor->register($app);
         }
