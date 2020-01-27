@@ -48,7 +48,7 @@ Now run `php artisan migrate` command to create `meter_entries` database table.
 
 ## Usage ##
 
-See `config/meter.php` file to setup various options. Meter UI will be visible at `path` config you set.
+See `config/meter.php` file for full list of options. Meter UI will be visible at `path` config you set.
 
 By default Meter monitors:
 
