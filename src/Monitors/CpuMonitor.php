@@ -15,7 +15,12 @@ class CpuMonitor extends Monitor
      */
     public function register($app)
     {
-        $cpuPercent = shell_exec("grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'");
+        $cpuPercent = 0;
+
+        try {
+            $cpuPercent = shell_exec("grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'");
+        } catch (\Exception $e) {
+        }
 
         $this->record(Type::CPU, false, ['percent' => round($cpuPercent)]);
     }

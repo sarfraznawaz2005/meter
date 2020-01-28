@@ -25,6 +25,8 @@ class MeterServiceProvider extends ServiceProvider
             return;
         }
 
+        $this->registerDbConnection();
+
         Meter::start($this->app);
 
         if (method_exists($router, 'aliasMiddleware')) {
@@ -47,6 +49,15 @@ class MeterServiceProvider extends ServiceProvider
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
         });
+    }
+
+    // see: https://github.com/sarfraznawaz2005/meter/issues/2
+    // see: https://github.com/laravel/framework/issues/25768
+    protected function registerDbConnection()
+    {
+        $defaultConnection = config('database.default');
+
+        config(['database.connections.meter' => config("database.connections.{$defaultConnection}")]);
     }
 
     /**

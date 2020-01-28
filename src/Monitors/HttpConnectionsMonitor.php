@@ -17,11 +17,14 @@ class HttpConnectionsMonitor extends Monitor
     {
         $count = 0;
 
-        // connections on port 80
-        $connections = shell_exec('netstat -an | grep :80 2>&1');
+        try {
+            // connections on port 80
+            $connections = shell_exec('netstat -an | grep :80 2>&1');
 
-        if (trim($connections)) {
-            $count = count(array_filter(explode("\n", $connections)));
+            if (trim($connections)) {
+                $count = count(array_filter(explode("\n", $connections)));
+            }
+        } catch (\Exception $e) {
         }
 
         $this->record(Type::CONNECTIONS, false, ['count' => $count]);

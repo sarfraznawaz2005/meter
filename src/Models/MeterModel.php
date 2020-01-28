@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MeterModel extends Model
 {
+    protected $connection = 'meter';
+
     protected $table = 'meter_entries';
 
     protected $fillable = ['type', 'is_slow', 'content'];
@@ -49,12 +51,6 @@ class MeterModel extends Model
             // default today
             $builder = $query->whereRaw("created_at >= '" . now()->toDateString() . " 00:00:00'");
         }
-
-        /*
-        if (!request()->expectsJson()) {
-            dump(meterGetSql($builder));
-        }
-        */
 
         return $builder;
     }
