@@ -15,8 +15,6 @@ class HttpConnectionsMonitor extends Monitor
      */
     public function register($app)
     {
-        $count = 0;
-
         try {
             // connections on port 80
             $connections = shell_exec('netstat -an | grep :80 2>&1');
@@ -24,9 +22,10 @@ class HttpConnectionsMonitor extends Monitor
             if (trim($connections)) {
                 $count = count(array_filter(explode("\n", $connections)));
             }
+
+            $this->record(Type::CONNECTIONS, false, ['count' => $count]);
+
         } catch (\Exception $e) {
         }
-
-        $this->record(Type::CONNECTIONS, false, ['count' => $count]);
     }
 }

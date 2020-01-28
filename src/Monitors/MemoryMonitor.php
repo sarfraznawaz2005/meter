@@ -15,8 +15,6 @@ class MemoryMonitor extends Monitor
      */
     public function register($app)
     {
-        $percent = 0;
-
         try {
             if (stripos(PHP_OS, 'win') !== 0 && stripos(PHP_OS, 'mac') !== 0) {
                 $free = shell_exec('free');
@@ -26,10 +24,11 @@ class MemoryMonitor extends Monitor
                 $mem = array_filter($mem);
                 $mem = array_merge($mem);
                 $percent = round($mem[2] / $mem[1] * 100);
+
+                $this->record(Type::MEMORY, false, ['percent' => $percent]);
             }
         } catch (\Exception $e) {
         }
 
-        $this->record(Type::MEMORY, false, ['percent' => $percent]);
     }
 }

@@ -43,6 +43,8 @@ class Meter
     {
         $ignoredCommands = array_merge([
             'meter:prune',
+            'meter:publish',
+            'meter:servermonitor',
             'migrate',
             'migrate:rollback',
             'migrate:fresh',
