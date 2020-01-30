@@ -23,6 +23,10 @@ class ServerMonitorCommand extends Command
 
     public function handle()
     {
+        if (!config('meter.enabled')) {
+            return;
+        }
+
         if (Meter::isMonitoring()) {
             $app = app();
 
