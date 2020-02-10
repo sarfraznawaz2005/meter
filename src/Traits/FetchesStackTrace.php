@@ -9,9 +9,9 @@ trait FetchesStackTrace
     /**
      * Find the first frame in the stack trace outside of Telescope/Laravel.
      *
-     * @return array
+     * @return mixed
      */
-    protected function getCallerFromStackTrace(): array
+    protected function getCallerFromStackTrace()
     {
         $trace = collect(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS))->forget(0);
 
