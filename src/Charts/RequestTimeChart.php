@@ -74,7 +74,7 @@ class RequestTimeChart extends Chart
             if (isset($item->content['duration'])) {
                 $this->data[(string)$item->created_at] = [
                     'x' => $item->content['uri'],
-                    'y' => $item->content['duration'],
+                    'y' => (int)$item->content['duration'],
                 ];
             }
         }

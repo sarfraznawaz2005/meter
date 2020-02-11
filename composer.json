@@ -23,7 +23,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.3",
         "illuminate/support": "~5|~6",
         "consoletvs/charts": "6.*",
         "balping/json-raw-encoder": "^1.0"

@@ -75,7 +75,7 @@ class QueriesTimeChart extends Chart
             if (isset($item->content['time'])) {
                 $this->data[(string)$item->created_at] = [
                     'x' => Str::limit($item->content['sql'], 120),
-                    'y' => $item->content['time'],
+                    'y' => (int)$item->content['time'],
                 ];
             }
         }

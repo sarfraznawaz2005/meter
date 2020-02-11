@@ -87,7 +87,7 @@ class SchedulesTimeChart extends Chart
             if (isset($item->content['time'])) {
                 $this->data[(string)$item->created_at] = [
                     'x' => $item->content['command'],
-                    'y' => $item->content['time'],
+                    'y' => (int)$item->content['time'],
                 ];;
             }
         }

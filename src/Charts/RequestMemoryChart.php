@@ -74,7 +74,7 @@ class RequestMemoryChart extends Chart
             if (isset($item->content['memory'])) {
                 $this->data[(string)$item->created_at] = [
                     'x' => $item->content['uri'],
-                    'y' => $item->content['memory'],
+                    'y' => (int)$item->content['memory'],
                 ];
             }
         }

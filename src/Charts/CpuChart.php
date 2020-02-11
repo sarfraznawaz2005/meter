@@ -57,7 +57,7 @@ class CpuChart extends Chart
     protected function setData(MeterModel $model)
     {
         foreach ($model->type(Type::CPU)->filtered()->orderBy('id', 'asc')->get() as $item) {
-            $this->data[(string)$item->created_at] = $item->content['percent'];
+            $this->data[(string)$item->created_at] = (int)$item->content['percent'];
         }
     }
 

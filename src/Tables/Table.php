@@ -49,8 +49,8 @@ abstract class Table
         $draw = request()->draw;
         $start = request()->start;
         $length = request()->length;
-        $orderColumn = request()->order[0]['column'];
-        $dir = request()->order[0]['dir'];
+        $orderColumn = request()->order[0]['column'] ?? null;
+        $dir = request()->order[0]['dir'] ?? null;
         $searchValue = trim(request()->search['value']);
 
         // sets the current page

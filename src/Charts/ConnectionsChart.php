@@ -57,7 +57,7 @@ class ConnectionsChart extends Chart
     protected function setData(MeterModel $model)
     {
         foreach ($model->type(Type::CONNECTIONS)->filtered()->orderBy('id', 'asc')->get() as $item) {
-            $this->data[(string)$item->created_at] = $item->content['count'];
+            $this->data[(string)$item->created_at] = (int)$item->content['count'];
         }
     }
 
