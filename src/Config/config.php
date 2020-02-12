@@ -123,6 +123,7 @@ return [
         // monitors active http connections count on port 80
         Sarfraznawaz2005\Meter\Monitors\HttpConnectionsMonitor::class => [
             'enabled' => env('METER_HTTP_CONNECTIONS_MONITOR', false),
+            'port' => env('METER_HTTP_CONNECTIONS_PORT', 80),
             'graph_type' => env('METER_HTTP_CONNECTIONS_GRAPH_TYPE', 'bar'), // bar, line
             'show_on_dashboard' => env('METER_HTTP_CONNECTIONS_ON_DASHBOARD', true)
         ],

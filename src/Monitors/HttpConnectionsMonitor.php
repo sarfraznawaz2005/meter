@@ -16,8 +16,10 @@ class HttpConnectionsMonitor extends Monitor
     public function register($app)
     {
         try {
-            // connections on port 80
-            $connections = shell_exec('netstat -an | grep :80 2>&1');
+
+            $port = config('meter.monitors.' . __CLASS__ . '.port', 80);
+
+            $connections = shell_exec("netstat -an | grep :$port 2>&1");
 
             if (trim($connections)) {
                 $count = count(array_filter(explode("\n", $connections)));

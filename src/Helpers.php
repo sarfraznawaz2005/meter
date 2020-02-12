@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 if (!function_exists('meterActiveLink')) {
     function meterActiveLink($path, $class = 'active')
