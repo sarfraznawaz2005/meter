@@ -10,6 +10,19 @@ Laravel Meter monitors application performance for different things such as requ
 
  - PHP >= 7.3
  - Laravel 5.5+ | 6
+
+## Configuration
+Available options are:
+- METER_DB_CONNECTION 
+  ` Database connection to use for meter entries. Default: mysql (uses default connection) `
+- METER_PATH 
+ ` Path to access meter UI. Default: meter `
+- METER_USERNAME 
+ ` Username to access meter UI. Default: null `
+- METER_PASSWORD 
+ ` Password to access meter UI. Default: null `
+
+there are a lot more options available, please check `config/meter.php` file for more details.
  
 ## Monitors ## 
 

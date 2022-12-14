@@ -19,6 +19,11 @@ class MeterModel extends Model
 
     const UPDATED_AT = null;
 
+    function __construct()
+    {
+        $this->connection = config('meter.storage.database.connection');
+    }
+
     /**
      * Scope the query for the given type.
      *

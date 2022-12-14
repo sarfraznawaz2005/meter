@@ -58,6 +58,18 @@ return [
 
     #---------------------------------------------------------------------
 
+    /*
+    * The database connection Meter will use to store data. By default, it
+    * will use the default database connection.
+    */
+    'storage' => [
+        'database' => [
+            'connection' => env('METER_DB_CONNECTION', 'mysql'),
+        ],
+    ],
+
+    #---------------------------------------------------------------------
+
     // Customize the monitors meter will use to show statiscs of.
     'monitors' => [
         Sarfraznawaz2005\Meter\Monitors\RequestMonitor::class => [
