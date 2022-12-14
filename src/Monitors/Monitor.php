@@ -55,11 +55,40 @@ abstract class Monitor
     {
         Meter::stopMonitoring();
 
-        $result = $this->model->create([
-            'type' => $type,
-            'is_slow' => $isSlow ? 'Yes' : 'No',
-            'content' => $content,
-        ]);
+        $result = true;
+        $skip = false;
+
+        if (count(config('meter.ignore_matched_string', [])) > 0) {
+
+            foreach (config('meter.ignore_matched_string', []) as $queryType) {
+
+                if (!is_array($queryType)) {
+                    continue;
+                }
+
+                if(count($queryType) == 0) {
+                    continue;
+                }
+
+                foreach ($queryType as $string) {
+                    if (in_array($string, $content)) {
+                        $skip = true;
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        if ($skip === false) {
+
+            $result = $this->model->create([
+                'type' => $type,
+                'is_slow' => $isSlow ? '1' : '0',
+                'content' => $content,
+                'created_at' => now(),
+            ]);
+        }
 
         Meter::startMonitoring();
 
