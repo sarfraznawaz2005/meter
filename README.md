@@ -22,6 +22,17 @@ Available options are:
 - METER_PASSWORD 
  ` Password to access meter UI. Default: null `
 
+ ```php
+ "ignore_matched_string" => [
+        "query" => [
+            "information_schema",
+        ]
+
+    ],
+```
+### Ignore matched string `it helps to ignore the matched string in the query`
+```php
+
 there are a lot more options available, please check `config/meter.php` file for more details.
  
 ## Monitors ## 

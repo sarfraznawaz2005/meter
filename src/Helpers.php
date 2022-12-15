@@ -73,3 +73,10 @@ if (!function_exists('meterFormatModel')) {
         return get_class($model) . ':' . implode('_', Arr::wrap($model->getKey()));
     }
 }
+
+if (!function_exists('meterIgnoreEntry')) {
+    function meterIgnoreEntry($key, $content)
+    {
+        return str_contains($content, $key);
+    }
+}
