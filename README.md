@@ -12,6 +12,7 @@ Laravel Meter monitors application performance for different things such as requ
  - Laravel 5.5+ | 6
 
 ## Configuration
+
 Available options are:
 - METER_DB_CONNECTION 
   ` Database connection to use for meter entries. Default: mysql (uses default connection) `
@@ -21,7 +22,9 @@ Available options are:
  ` Username to access meter UI. Default: null `
 - METER_PASSWORD 
  ` Password to access meter UI. Default: null `
-
+- ignore_matched_string 
+ ` It helps to ignore the matched string in the query. Ex:`
+ 
  ```php
  "ignore_matched_string" => [
         "query" => [
@@ -30,10 +33,8 @@ Available options are:
 
     ],
 ```
-### Ignore matched string `it helps to ignore the matched string in the query`
-```php
 
-there are a lot more options available, please check `config/meter.php` file for more details.
+There are more options available, please check `config/meter.php` file for more details.
  
 ## Monitors ## 
 
